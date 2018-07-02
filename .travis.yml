@@ -20,7 +20,7 @@ deploy:
   github-token: $GITHUB_TOKEN
   keep-history: true
   local-dir: dist
-  repo: omahasymphonicchorus.github.io
+  repo: omahasymphonicchorus/omahasymphonicchorus.github.io
   target-branch: master
   on:
     branch: master
