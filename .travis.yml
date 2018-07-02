@@ -10,6 +10,9 @@ before_script:
   - yarn global add gulp-cli
 script:
   - yarn run build
+branches:
+  only:
+    master
 deploy:
   provider: pages
   skip-cleanup: true
