@@ -1,0 +1,38 @@
+
+<div class="section section-team text-center">
+  <div class="container">
+    <h2 class="title">{{ .Title }}</h2>
+    <div class="team">
+      <div class="row">
+        {{ $bios := .Pages }}
+        {{ range .Pages }}
+        <div class="{{ if eq (len $bios) 1 }}col-md-12{{ else if eq (len $bios) 2 }}col-md-6{{ else }}col-md-4{{ end }}">
+          <div class="team-player">
+            <img src="{{ $headshot := .Resources.GetMatch "headshot" }}{{ with $headshot }}{{ .RelPermalink }}{{ end }}" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+            <h4 class="title">{{ .Title }}</h4>
+            <p class="category text-primary">{{ .Params.position }}</p>
+            <p class="description">{{ .Description }}...</p>
+            <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#{{ .UniqueID }}-bio">Full bio</a>
+          </div>
+        </div>
+        <div class="modal fade" id="{{ .UniqueID }}-bio" tabindex="-1" role="dialog" aria-labelledby="{{ .UniqueID }}-bio" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h4 class="title title-up">{{ .Title }}<br><small>{{ .Params.position }}</small></h4>
+              </div>
+              <div class="modal-body">
+                <img class="float-left w-25 mr-3 mb-3" src="{{ with $headshot }}{{ .RelPermalink }}{{ end }}">
+                {{ .Content }}
+              </div>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>

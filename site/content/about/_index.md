@@ -1,6 +1,20 @@
 +++
 title = "About"
 description = "About the Chorus"
+quote = "This is an extremely heartfelt, uplifiting quote by a member of the chorus who loves coming to sing every week."
+quoteCredit = "John Doe"
+
+[[ resources ]]
+    name = "about-top-left"
+    src = "revue.jpg"
+
+[[ resources ]]
+    name = "about-top-right"
+    src = "choir-old.jpg"
+
+[[ resources ]]
+    name = "about-left"
+    src = "roadhome.jpg"
 
 # The content below should only be raw text. Do not use Markdown here.
 +++
