@@ -1,6 +1,7 @@
 language: node_js
 node_js: lts/*
 env:
+  - PATH=$PATH:$TRAVIS_BUILD_DIR
   - HUGO_VER=0.46
 cache: yarn
 install: 
