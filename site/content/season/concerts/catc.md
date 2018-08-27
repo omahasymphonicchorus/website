@@ -7,5 +7,3 @@ St. Cecilia Cathedral
 701 N 40th St
 Omaha, NE 68131'''
 +++
-
-Blurb about fall concert
