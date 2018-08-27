@@ -20,7 +20,7 @@
   <link href="./assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="index-page sidebar-collapse">
+<body class="index-page sidebar-collapse" data-spy="scroll" data-target="#main-nav" data-offset="64">
   {{ partial "navbar.html" . }}
   <div class="wrapper">
     <div class="page-header clear-filter" filter-color="orange">
@@ -65,6 +65,12 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABFKIvLgiTzbuwBymZINW5jj1zq23_R5E"></script>
   <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/now-ui-kit.js?v=1.2.0" type="text/javascript"></script>
+  <script>
+  $('[data-spy="scroll"]').on('activate.bs.scrollspy', function () {
+    alert("spying");
+  });
+  $('body').scrollspy({ target: '#main-nav' });
+</script>
 </body>
 
 </html>

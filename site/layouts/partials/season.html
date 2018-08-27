@@ -1,5 +1,5 @@
 {{ with .Site.GetPage "section" "season" }}
-  <div class="section section-season bg-light">
+  <div class="section section-season bg-light" id="{{ .Title | urlize }}">
     <div class="container">
       <h2 class="title text-center">{{ .Title }}</h2>
       <div class="card">
