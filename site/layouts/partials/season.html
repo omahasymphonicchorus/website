@@ -1,0 +1,54 @@
+{{ with .Site.GetPage "section" "season" }}
+  <div class="section section-season bg-light">
+    <div class="container">
+      <h2 class="title text-center">{{ .Title }}</h2>
+      <div class="card">
+        <div class="card-header text-center">
+          <ul class="nav nav-tabs justify-content-center" role="tablist">
+            {{ with .GetPage "concerts" }}
+              {{ range $index, $value := .Pages }}
+                {{ $tabID := ( .File.BaseFileName | urlize ) }}
+                <li class="nav-item">
+                  <a class="nav-link{{ if eq $index 0 }} active{{ end }}" id="{{ $tabID }}-tab" data-toggle="tab" href="#{{ $tabID }}" role="tab" aria-controls="home" aria-selected="{{if eq $index 0}}true{{ else }}false{{ end }}">{{ $value.Title }}</a>
+                </li>
+              {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content">
+            {{ with .GetPage "concerts" }}
+              {{ range $index, $value := .Pages }}
+                {{ $tabID := ( .File.BaseFileName | urlize ) }}
+                <div class="tab-pane{{ if eq $index 0 }} active{{ end }}" id="{{ $tabID }}" role="tabpanel" aria-labelledby="{{ $tabID }}-tab">
+                  <div class="row">
+                    <div class="col-3">
+                      {{ if .Params.datetimes }}<div class="date-picker" data-provide="datepicker-inline" data-date-multidate=true data-date="{{ delimit ( apply .Params.datetimes "dateFormat" "01/02/2006" "." ) "," }}" disabled></div>{{ end }}
+                    </div>
+                    <div class="col-5">
+                      <h4 class="card-title">
+                        {{ .Title }}
+                      </h4>
+                      <h5>
+                        {{ if .Params.datetimes }}
+                          {{ range .Params.datetimes }}
+                            {{ dateFormat "Monday, Jan _2, 2006, 3:04PM" . }}<br>
+                          {{ end }}
+                        {{ end }}
+                      </h5>
+                      <p>{{ replace .Params.location "\n" "<br/>" | safeHTML }}</p>
+                      {{ .Content }}
+                    </div>
+                    <div class="col-4 align-self-stretch">
+                      <div class="map h-100" data-address="{{ .Params.location }}"></div>
+                    </div>
+                  </div>
+                </div>
+              {{ end }}
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}
