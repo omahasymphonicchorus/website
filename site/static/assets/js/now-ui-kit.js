@@ -103,6 +103,41 @@ $(document).ready(function() {
     });
   });
 
+  // Activate Google Maps
+  $('.map').each(function() {
+    if($(this).data('address')) {
+      var address = $(this).data('address');
+      var geocoder = new google.maps.Geocoder();
+      var root = $(this)[0];
+      geocoder.geocode(
+        {address: $(this).data('address')},
+        function(res, sta) {
+          if(sta == google.maps.GeocoderStatus.OK) {
+            if(sta != google.maps.GeocoderStatus.ZERO_RESULTS) {
+              var map = new google.maps.Map(root, {
+                zoom: 16,
+                center: res[0].geometry.location,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                streetViewControl: false
+              });
+              var marker = new google.maps.Marker({
+                position: res[0].geometry.location,
+                map: map,
+                title: address
+              });
+            } else {
+              alert("No result");
+            }
+          } else {
+            alert("Not ok");
+          }
+        }
+      );
+    }
+    
+  });
+
 
 });
 
@@ -240,7 +275,7 @@ nowuiKit = {
 }
 
 // Javascript just for Demo purpose, remove it from your project
-nowuiKitDemo = {
+/*nowuiKitDemo = {
   checkScrollForParallax: debounce(function() {
     var current_scroll = $(this).scrollTop();
 
@@ -254,7 +289,7 @@ nowuiKitDemo = {
 
   }, 6)
 
-}
+}*/
 
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for

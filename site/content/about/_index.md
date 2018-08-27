@@ -1,5 +1,6 @@
 +++
 title = "About"
+weight = 1
 description = "About the Chorus"
 quote = "This is an extremely heartfelt, uplifiting quote by a member of the chorus who loves coming to sing every week."
 quoteCredit = "John Doe"

@@ -1,6 +1,5 @@
-<div class="landing-page">
   {{ with .Site.GetPage "section" "about" }}
-    <div class="section section-about-us">
+    <div class="section section-about-us" id="{{ .Title | urlize }}">
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center">
@@ -39,4 +38,3 @@
     {{ partial "bio.html" . }}
     {{ end }}
   {{ end }}
-</div>
