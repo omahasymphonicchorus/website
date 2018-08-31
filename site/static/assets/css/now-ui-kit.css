@@ -27,6 +27,14 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
+.map:not(:empty) {
+  min-height: 256px;
+}
+
+.g-recaptcha {
+  display: inline-block;
+}
+
 .bootstrap-switch {
   display: inline-block;
   direction: ltr;
@@ -888,6 +896,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .datepicker.datepicker-inline {
   width: 220px;
+  margin-left: auto;
+  margin-right: auto;
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
