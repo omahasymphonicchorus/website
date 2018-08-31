@@ -276,13 +276,31 @@ function submitContactForm(form, event) {
     const formElements = Array.from(form);
     formElements.map(input => (formData[input.name] = input.value));
 
+    var submitButton = $(form).find('button[type=submit]').first();
+    var origSubmitText = $(submitButton).html();
+    $(submitButton).prop('disabled', true);
+    $(submitButton).html('Sending... <i class="now-ui-icons loader_refresh spin"></i>')
+    $(form).find("input[type=text], textarea").prop('disabled', true);
     $.post(
       'https://0m77g3744j.execute-api.us-east-1.amazonaws.com/dev/contact',
       JSON.stringify(formData),
-      function(data) {
-        console.log(data);
-      },
+      null,
       'json'
-    );
+    ).done(function() {
+      $("#submit-fail").remove();
+      $(form).find("input[type=text], textarea").val("");
+      $(form).find("button[type=submit]").before('<div id="submit-success" class="form-text text-success">Your message has been sent.</div>');
+      setTimeout(function() {
+        $("#submit-success").remove();
+      }, 5000);
+    }).fail(function(err) {
+      console.log(err);
+      $(form).find("button[type=submit]").before('<div id="submit-fail" class="form-text text-danger">Message submission failed: ' + err.responseJSON.message + '</div>');
+    }).always(function(data) {
+      console.log(data);
+      $(submitButton).prop('disabled', false);
+      $(submitButton).html(origSubmitText);
+      $(form).find("input[type=text], textarea").prop('disabled', false)
+    });
   });
 }
