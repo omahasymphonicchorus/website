@@ -18,6 +18,7 @@
   <link href="./assets/css/now-ui-kit.css?v=1.2.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="./assets/demo/demo.css" rel="stylesheet" />
+  <script src='https://www.google.com/recaptcha/api.js?render=6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv'></script>
 </head>
 
 <body class="index-page sidebar-collapse" data-spy="scroll" data-target="#main-nav" data-offset="64">
@@ -40,6 +41,7 @@
       {{ partial "about.html" . }}
       {{ partial "season.html" . }}
       {{ partial "partners.html" . }}
+      {{ partial "contact.html" . }}
     </div>
     <footer class="footer" data-background-color="black">
       <div class="container">
@@ -67,11 +69,10 @@
   <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/now-ui-kit.js?v=1.2.0" type="text/javascript"></script>
   <script>
-  $('[data-spy="scroll"]').on('activate.bs.scrollspy', function () {
-    alert("spying");
-  });
-  $('body').scrollspy({ target: '#main-nav' });
-</script>
+    grecaptcha.ready(function() {
+      grecaptcha.execute('6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv', {action: 'homepage'});
+    });
+  </script>
 </body>
 
 </html>

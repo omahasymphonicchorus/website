@@ -74,11 +74,8 @@ $(document).ready(function() {
     });
   });
 
-  if ($(window).width() >= 992) {
-    big_image = $('.page-header-image[data-parallax="true"]');
-
-    $(window).on('scroll', nowuiKitDemo.checkScrollForParallax);
-  }
+  big_image = $('.page-header-image[data-parallax="true"]');
+  $(window).on('scroll', nowuiKit.checkScrollForParallax);
 
   // Activate Carousel
   $('.carousel').carousel({
@@ -140,23 +137,6 @@ $(document).ready(function() {
 
 
 });
-
-// Javascript just for Demo purpose, remove it from your project
-nowuiKitDemo = {
-  checkScrollForParallax: debounce(function() {
-    var current_scroll = $(this).scrollTop();
-
-    oVal = ($(window).scrollTop() / 3);
-    big_image.css({
-      'transform': 'translate3d(0,' + oVal + 'px,0)',
-      '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-      '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
-      '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
-    });
-
-  }, 6)
-
-}
 
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
@@ -229,6 +209,19 @@ nowuiKit = {
     }
   }, 17),
 
+  checkScrollForParallax: debounce(function() {
+    var current_scroll = $(this).scrollTop();
+
+    oVal = ($(window).scrollTop() / 3);
+    big_image.css({
+      'transform': 'translate3d(0,' + oVal + 'px,0)',
+      '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
+      '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
+      '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
+    });
+
+  }, 10),
+
   initNavbarImage: function() {
     var $navbar = $('.navbar').find('.navbar-translate').siblings('.navbar-collapse');
     var background_image = $navbar.data('nav-image');
@@ -274,38 +267,22 @@ nowuiKit = {
   }
 }
 
-// Javascript just for Demo purpose, remove it from your project
-/*nowuiKitDemo = {
-  checkScrollForParallax: debounce(function() {
-    var current_scroll = $(this).scrollTop();
+function submitContactForm(form, event) {
+  event.preventDefault();
 
-    oVal = ($(window).scrollTop() / 3);
-    big_image.css({
-      'transform': 'translate3d(0,' + oVal + 'px,0)',
-      '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-      '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
-      '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
-    });
+  grecaptcha.execute('6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv', {action: 'submit'}).then(function(token) {
+    $('#g-recaptcha-response').val(token);
+    const formData = {};
+    const formElements = Array.from(form);
+    formElements.map(input => (formData[input.name] = input.value));
 
-  }, 6)
-
-}*/
-
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// N milliseconds. If `immediate` is passed, trigger the function on the
-// leading edge, instead of the trailing.
-
-function debounce(func, wait, immediate) {
-  var timeout;
-  return function() {
-    var context = this,
-      args = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    }, wait);
-    if (immediate && !timeout) func.apply(context, args);
-  };
-};
+    $.post(
+      'https://0m77g3744j.execute-api.us-east-1.amazonaws.com/dev/contact',
+      JSON.stringify(formData),
+      function(data) {
+        console.log(data);
+      },
+      'json'
+    );
+  });
+}

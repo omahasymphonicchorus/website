@@ -22,10 +22,10 @@
                 {{ $tabID := ( .File.BaseFileName | urlize ) }}
                 <div class="tab-pane{{ if eq $index 0 }} active{{ end }}" id="{{ $tabID }}" role="tabpanel" aria-labelledby="{{ $tabID }}-tab">
                   <div class="row">
-                    <div class="col-3">
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 mx-auto">
                       {{ if .Params.datetimes }}<div class="date-picker" data-provide="datepicker-inline" data-date-multidate=true data-date="{{ delimit ( apply .Params.datetimes "dateFormat" "01/02/2006" "." ) "," }}" disabled></div>{{ end }}
                     </div>
-                    <div class="col-5">
+                    <div class="col-xl-5 col-lg-4 col-md-7 col-sm-12">
                       <h4 class="card-title">
                         {{ .Title }}
                       </h4>
@@ -39,7 +39,7 @@
                       <p>{{ replace .Params.location "\n" "<br/>" | safeHTML }}</p>
                       {{ .Content }}
                     </div>
-                    <div class="col-4 align-self-stretch">
+                    <div class="col-lg-4 col-sm-12 align-self-stretch">
                       <div class="map h-100" data-address="{{ .Params.location }}"></div>
                     </div>
                   </div>
