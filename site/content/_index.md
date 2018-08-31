@@ -1,5 +1,5 @@
 +++
-tagline = "Advancing the large choral tradition in the Omaha community"
+tagline = "Advancing choral artistry in the Omaha community"
 director = "Dr. Greg Zielke"
 directorTitle = "Artistic Director and Conductor"
 
