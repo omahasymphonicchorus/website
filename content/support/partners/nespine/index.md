@@ -1,9 +1,9 @@
 +++
 title = "Nebraska Spine and Pain Center"
-short = "nebraska_spine"
+short = "nespine"
 link = "https://nebraskaspineandpain.com/"
 
 [[ resources ]]
     name = "logo"
-    src = "nebraska_spine.svg"
+    src = "nespine.svg"
 +++

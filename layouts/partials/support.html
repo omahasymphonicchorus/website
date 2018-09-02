@@ -1,0 +1,32 @@
+{{ with .Site.GetPage "section" "support" }}
+  <div class="section section-support bg-dark text-light" id="{{ .Title | urlize }}">
+    <div class="container">
+      <h2 class="title text-center">
+        {{ .Description }}
+      </h2>
+      <div class="card card-plain">
+        <div class="card-body">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ with .GetPage "partners" }}
+    <div class="section section-partners bg-light" id="{{ .Title | urlize }}">
+      <div class="container text-center">
+        <h2 class="title">{{ .Description }}</h2>
+        {{ .Content }}
+        <div class="card-columns">
+          {{ range .Pages }}
+          <div class="card">
+            <a href="{{ .Params.link }}" target="_blank"><img class="card-img-top" src="{{ $logo := .Resources.GetMatch "logo" }}{{ with $logo }}{{ .RelPermalink }}{{ end }}" alt="{{ .Title }}"></a>
+            <div class="card-body">
+              <a href="{{ .Params.link }}" target="_blank"><h5 class="card-title">{{ .Title }}</h5></a>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  {{ end }}
+{{ end }}
