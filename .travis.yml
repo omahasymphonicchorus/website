@@ -1,4 +1,4 @@
-group: travis_latest
+dist: xenial
 language: generic
 env:
   - PATH=$PATH:$TRAVIS_BUILD_DIR HUGO_VER=0.48
