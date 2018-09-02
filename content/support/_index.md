@@ -20,7 +20,7 @@ The Omaha Symphonic Chorus depends on the generosity of individuals, businesses 
 You may be able to double or even triple your gift to the Omaha Symphonic Chorus. Many employers offer matching gift programs that will match employees’ charitable contributions. If your company is eligible, request a matching gift form from your employer (typically the human resources department), and mail the completed form to the Omaha Symphonic Chorus along with your contribution. We will handle the rest.
 
 #### How to make your contribution
-To support musical activities of the chorus by making a donation to our Annual Fund, please click the <button style="margin-bottom: -1em; margin-top: -1em;" class="btn btn-sm btn-neutral">DONATE</button> button and fill out the form to make a credit card donation securely processed by [Square](https://www.squareup.com). Or, if you prefer to write a check, please mail your check to:
+To support musical activities of the chorus by making a donation to our Annual Fund, please click the <button style="margin-bottom: -1em; margin-top: -1em;" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#donation-form">DONATE</button> button and fill out the form to make a credit card donation securely processed by [Square](https://www.squareup.com). Or, if you prefer to write a check, please mail your check to:
 
 <address>
 Omaha Symphonic Chorus <br>
