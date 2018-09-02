@@ -1,5 +1,10 @@
-dist: xenial
 language: generic
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libstdc++-4.9-dev
 env:
   - PATH=$PATH:$TRAVIS_BUILD_DIR HUGO_VER=0.48
 install: 
