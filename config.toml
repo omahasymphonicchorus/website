@@ -1,0 +1,13 @@
+baseurl = "/"
+languageCode = "en-us"
+languageLang = "en"
+title = "Omaha Symphonic Chorus"
+
+# RSS, categories and tags disabled for an easy start
+# See configuration options for more details: 
+# https://gohugo.io/getting-started/configuration/#toml-configuration
+disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+
+[params]
+    mapsKey = "AIzaSyABFKIvLgiTzbuwBymZINW5jj1zq23_R5E"
+    recaptchaKey = "6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv"
