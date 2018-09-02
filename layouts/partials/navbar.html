@@ -15,7 +15,8 @@
         <ul class="navbar-nav">
           {{ range .Site.Sections }}
             <li class="nav-item">
-              <a class="nav-link" href="#{{ .Title | urlize }}">
+              <!-- a class="nav-link" href="#{{ .Title | urlize }}" -->
+              <a class="nav-link" href="javascript:void(0);" data-target="#{{ .Title | urlize }}" onclick="smoothScroll(this, event)">
                 <p>{{ .Title }}</p>
               </a>
             </li>
