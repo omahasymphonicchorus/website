@@ -7,6 +7,12 @@ $(document).ready(function() {
 });
 
 function smoothScroll(node, e) {
+  $("html").removeClass("nav-open");
+  nowuiKit.misc.navbar_menu_visible = 0;
+  setTimeout(function() {
+    $toggle.removeClass("toggled");
+    $("#bodyClick").remove();
+  }, 550);
   $("html, body").animate({
     scrollTop: $($(node).data('target')).offset().top
   }, 1000);
@@ -83,7 +89,14 @@ var paymentForm = new SqPaymentForm({
   // Customize the CSS for SqPaymentForm iframe elements
   inputStyles: [
     {
-      fontSize: ".9em"
+      backgroundColor: "transparent",
+      boxShadow: "none",
+      color: "#2c2c2c",
+      fontFamily: "Helvetica Neue, Arial, sans-serif",
+      fontWeight: "300",
+      fontSize: ".8571em",
+      lineHeight: "normal",
+      padding: "10px 18px"
     }
   ],
 

@@ -82,6 +82,7 @@
         }
 
         .nav-item.active .nav-link:not(.btn),
+        .nav-item .nav-link.active:not(.btn), // !OSC customization
         .nav-item .nav-link:not(.btn):focus,
         .nav-item .nav-link:not(.btn):hover,
         .nav-item .nav-link:not(.btn):active{
