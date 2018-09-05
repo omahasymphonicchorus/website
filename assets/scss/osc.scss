@@ -2,6 +2,15 @@
  * Style sheet overrides and changes for OSC
  */
 
+.btn-group-round > .btn:first-child {
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.btn-group-round > .btn:last-child {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
 .map:not(:empty) {
     min-height: 256px;
 }

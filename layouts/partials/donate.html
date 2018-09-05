@@ -1,63 +1,151 @@
 {{ with .GetPage "donate" }}
   <div class="modal fade" id="donation-form" tabindex="-1" role="dialog" aria-hidden="true">
-    <form id="nonce-form" novalidate action="path/to/payment/processing/page" method="post">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <h5 class="modal-title">{{ .Title }}</h4>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ .Title }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>Your tax deductible contribution enables us to remain a healthy and vibrant organization. Thank you for your support!</p>
+          <form>
+            <div class="card card-plain border-bottom">
+              <div class="card-body">
+                <h5 class="card-title">Amount</h5>
+                <div class="row">
+                  <div class="btn-group btn-group-round btn-group-toggle d-flex col" data-toggle="buttons">
+                    <label class="btn btn-primary w-100">
+                      <input type="radio" name="amount-btn" value=100>$100
+                    </label>
+                    <label class="btn btn-primary w-100">
+                      <input type="radio" name="amount-btn" value=250>$250
+                    </label>
+                    <label class="btn btn-primary w-100">
+                      <input type="radio" name="amount-btn" value=500>$500
+                    </label>
+                    <label class="btn btn-primary w-100">
+                      <input type="radio" name="amount-btn" value="other">Other
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group" disabled>
+                    <label></label>
+                    <div id="donation-amount" class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                      </div>
+                      <input class="form-control" type="text" name="amount">
+                      <div class="input-group-append">
+                        <span class="input-group-text">USD</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
           </div>
-          <div class="modal-body">
-            <div id="sq-ccbox">
-              <!--
-                You should replace the action attribute of the form with the path of
-                the URL you want to POST the nonce to (for example, "/process-card")
-              -->
-                <div class="form-group">
-                  <label for="sq-card-number">Card number:</label>
-                  <div id="sq-card-number"></div>
+          <div class="card card-plain border-bottom">
+            <div class="card-body">
+              <h5 class="card-title">Contact information</h5>
+              <div class="form-row">
+                <div class="col form-group">
+                  <label for="donation-name">Name</label>
+                  <input type="text" class="form-control" name="name" id="donation-name" required>
                 </div>
-                <div class="form-group">
-                  <label for="sq-cvv">CVV:</label>
-                  <div id="sq-cvv"></div>
+              </div>
+              <div class="form-row">
+                <div class="col form-group">
+                  <label for="donation-street">Address</label>
+                  <input type="text" class="form-control" name="address" id="donation-address">
                 </div>
-                  <div class="form-group">
-                    <label for="sq-expiration-date">Expiration Date:</label>
-                    <div id="sq-expiration-date"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="sq-postal-code">Postal Code:</label>
-                    <div id="sq-postal-code"></div>
-                  </div>
-                  <div class="form-group">
-                    <button id="sq-creditcard" class="btn btn-primary" onclick="requestCardNonce(event)">
-                      Pay with card
-                    </button>
-                  </div>
-            
-                <!--
-                  After a nonce is generated it will be assigned to this hidden input field.
-                -->
-                <input type="hidden" id="card-nonce" name="nonce">
-              </form>
+              </div>
+              <div class="form-row">
+                <div class="col-6 form-group">
+                  <label for="donation-city">City</label>
+                  <input type="text" class="form-control" name="city" id="donation-city">
+                </div>
+                <div class="col-2 form-group">
+                  <label for="donation-state">ST</label>
+                  <input type="text" class="form-control" name="state" id="donation-state">
+                </div>
+                <div class="col-4 form-group">
+                  <label for="sq-postal-code">ZIP</label>
+                  <div id="sq-postal-code"></div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col form-group">
+                  <label for="donation-email">Email address</label>
+                  <input type="email" class="form-control" name="email" id="donation-email" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col form-group">
+                  <label for="donation-phone">Phone number</label>
+                  <input type="phone" class="form-control" name="phone" id="donation-phone">
+                </div>
+              </div>
             </div>
-            
-            <div id="sq-walletbox">
-              Pay with a Digital Wallet
-              <div id="sq-apple-pay-label" class="wallet-not-enabled">Apple Pay for Web not enabled</div>
-              <!-- Placeholder for Apple Pay for Web button -->
-              <button id="sq-apple-pay" class="button-apple-pay"></button>
-
-              <div id="sq-masterpass-label" class="wallet-not-enabled">Masterpass not enabled</div>
-              <!-- Placeholder for Masterpass button -->
-              <button id="sq-masterpass" class="button-masterpass"></button>
+          </div>
+          <div class="card card-plain">
+            <div class="card-header text-center">
+              <h5 class="card-title text-left">Payment type</h5>
+              <ul class="nav nav-tabs justify-content-center" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="donate-cc-tab" data-toggle="tab" href="#donate-cc">Credit card</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="donate-ap-tab" data-toggle="tab" href="#donate-ap">Apple Pay</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="donate-mp-tap" data-toggle="tab" href="#donate-mp">MasterPass</a>
+                </li>
+              </ul>
             </div>
+            <div class="card-body">
+              <div class="tab-content">
+                <div class="tab-pane active" id="donate-cc" role="tabpanel" aria-labelledby="donate-cc-tab">
+                  <div class="form-row">
+                    <div class="form-group col">
+                      <label for="sq-card-number">Card number:</label>
+                      <div id="sq-card-number"></div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-6">
+                      <label for="sq-cvv">CVV:</label>
+                      <div id="sq-cvv"></div>
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="sq-expiration-date">Exp Date:</label>
+                      <div id="sq-expiration-date"></div>
+                    </div>
+                  </div>
+                      <!--
+                        After a nonce is generated it will be assigned to this hidden input field.
+                      -->
+                  <input type="hidden" id="card-nonce" name="nonce">
+                </div>
+                <div class="tab-pane" id="donate-ap" role="tabpanel" aria-labelledby="donate-ap-tab">
+                  <div id="sq-apple-pay-label" class="wallet-not-enabled">Apple Pay for Web not enabled</div>
+                  <!-- Placeholder for Apple Pay for Web button -->
+                  <button id="sq-apple-pay" class="button-apple-pay"></button>
+                </div>
+                <div class="tab-pane" id="donate-mp" role="tabpanel" aria-labelledby="donate-mp-tab">
+                  <div id="sq-masterpass-label" class="wallet-not-enabled">Masterpass not enabled</div>
+                  <!-- Placeholder for Masterpass button -->
+                  <button id="sq-masterpass" class="button-masterpass"></button>                </div>
+              </div>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Send donation</button>
+          <button id="sq-creditcard" class="btn btn-primary" onclick="requestCardNonce(event)">
+            Pay with card
+          </button>
         </div>
       </div>
     </div>

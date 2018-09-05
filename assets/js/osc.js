@@ -252,3 +252,13 @@ var paymentForm = new SqPaymentForm({
 $("#donation-form").on("hidden.bs.modal", function(e) {
   paymentForm.recalculateSize();
 });
+
+$('input[type="radio"][name="amount-btn"]').on('change', function(e) {
+  if(e.target.value === 'other') {
+    $('#donation-amount input[name="amount"]').val("");
+    $('#donation-amount, #donation-amount input[name="amount"]').attr('disabled', false);
+  } else {
+    $('#donation-amount input[name="amount"]').val(e.target.value);
+    $('#donation-amount, #donation-amount input[name="amount"]').attr('disabled', true)
+  }
+});
