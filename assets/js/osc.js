@@ -7,6 +7,12 @@ $(document).ready(function() {
 });
 
 function smoothScroll(node, e) {
+  $("html").removeClass("nav-open");
+  nowuiKit.misc.navbar_menu_visible = 0;
+  setTimeout(function() {
+    $toggle.removeClass("toggled");
+    $("#bodyClick").remove();
+  }, 550);
   $("html, body").animate({
     scrollTop: $($(node).data('target')).offset().top
   }, 1000);
@@ -83,7 +89,14 @@ var paymentForm = new SqPaymentForm({
   // Customize the CSS for SqPaymentForm iframe elements
   inputStyles: [
     {
-      fontSize: ".9em"
+      backgroundColor: "transparent",
+      boxShadow: "none",
+      color: "#2c2c2c",
+      fontFamily: "Helvetica Neue, Arial, sans-serif",
+      fontWeight: "300",
+      fontSize: ".8571em",
+      lineHeight: "normal",
+      padding: "10px 18px"
     }
   ],
 
@@ -129,14 +142,14 @@ var paymentForm = new SqPaymentForm({
       // Only show the button if Apple Pay for Web is enabled
       // Otherwise, display the wallet not enabled message.
       if (methods.applePay === true) {
+        $("#payment-type-tabs").append('<li class="nav-item"> <a class="nav-link" id="donate-ap-tab" data-toggle="tab" href="#donate-ap">Apple Pay</a></li>');
         applePayBtn.style.display = "inline-block";
-        applePayLabel.style.display = "none";
       }
       // Only show the button if Masterpass is enabled
       // Otherwise, display the wallet not enabled message.
       if (methods.masterpass === true) {
+        $("#payment-type-tabs").append('<li class="nav-item"><a class="nav-link" id="donate-mp-tap" data-toggle="tab" href="#donate-mp">MasterPass</a></li>');
         masterpassBtn.style.display = "inline-block";
-        masterpassLabel.style.display = "none";
       }
     },
 
@@ -238,4 +251,14 @@ var paymentForm = new SqPaymentForm({
 
 $("#donation-form").on("hidden.bs.modal", function(e) {
   paymentForm.recalculateSize();
+});
+
+$('input[type="radio"][name="amount-btn"]').on('change', function(e) {
+  if(e.target.value === 'other') {
+    $('#donation-amount input[name="amount"]').val("");
+    $('#donation-amount, #donation-amount input[name="amount"]').attr('disabled', false);
+  } else {
+    $('#donation-amount input[name="amount"]').val(e.target.value);
+    $('#donation-amount, #donation-amount input[name="amount"]').attr('disabled', true)
+  }
 });
