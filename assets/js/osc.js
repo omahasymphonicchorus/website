@@ -57,7 +57,7 @@ function submitContactForm(form, event) {
 }
 
 // Set the application ID
-var applicationId = "sandbox-sq0idp-wcmmS4Jh5KaIE7C2Y63Dxg";
+var applicationId = "sq0idp-wcmmS4Jh5KaIE7C2Y63Dxg";
 
 // Set the location ID
 var locationId = "CAJDYVACNDP9F";
