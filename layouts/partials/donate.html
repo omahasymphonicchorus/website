@@ -92,15 +92,9 @@
           <div class="card card-plain">
             <div class="card-header text-center">
               <h5 class="card-title text-left">Payment type</h5>
-              <ul class="nav nav-tabs justify-content-center" role="tablist">
+              <ul class="nav nav-tabs justify-content-center" id="payment-type-tabs" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="donate-cc-tab" data-toggle="tab" href="#donate-cc">Credit card</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="donate-ap-tab" data-toggle="tab" href="#donate-ap">Apple Pay</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="donate-mp-tap" data-toggle="tab" href="#donate-mp">MasterPass</a>
                 </li>
               </ul>
             </div>
@@ -123,29 +117,27 @@
                       <div id="sq-expiration-date"></div>
                     </div>
                   </div>
+                  <div class="form-row">
+                    <div class="form-group col">
+                      <button id="sq-creditcard" class="btn btn-block btn-primary" onclick="requestCardNonce(event)">
+                        Pay with card
+                      </button>
+                    </div>
+                  </div>
                       <!--
                         After a nonce is generated it will be assigned to this hidden input field.
                       -->
                   <input type="hidden" id="card-nonce" name="nonce">
                 </div>
                 <div class="tab-pane" id="donate-ap" role="tabpanel" aria-labelledby="donate-ap-tab">
-                  <div id="sq-apple-pay-label" class="wallet-not-enabled">Apple Pay for Web not enabled</div>
                   <!-- Placeholder for Apple Pay for Web button -->
                   <button id="sq-apple-pay" class="button-apple-pay"></button>
                 </div>
                 <div class="tab-pane" id="donate-mp" role="tabpanel" aria-labelledby="donate-mp-tab">
-                  <div id="sq-masterpass-label" class="wallet-not-enabled">Masterpass not enabled</div>
-                  <!-- Placeholder for Masterpass button -->
                   <button id="sq-masterpass" class="button-masterpass"></button>                </div>
               </div>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="sq-creditcard" class="btn btn-primary" onclick="requestCardNonce(event)">
-            Pay with card
-          </button>
         </div>
       </div>
     </div>

@@ -142,14 +142,14 @@ var paymentForm = new SqPaymentForm({
       // Only show the button if Apple Pay for Web is enabled
       // Otherwise, display the wallet not enabled message.
       if (methods.applePay === true) {
+        $("#payment-type-tabs").append('<li class="nav-item"> <a class="nav-link" id="donate-ap-tab" data-toggle="tab" href="#donate-ap">Apple Pay</a></li>');
         applePayBtn.style.display = "inline-block";
-        applePayLabel.style.display = "none";
       }
       // Only show the button if Masterpass is enabled
       // Otherwise, display the wallet not enabled message.
       if (methods.masterpass === true) {
+        $("#payment-type-tabs").append('<li class="nav-item"><a class="nav-link" id="donate-mp-tap" data-toggle="tab" href="#donate-mp">MasterPass</a></li>');
         masterpassBtn.style.display = "inline-block";
-        masterpassLabel.style.display = "none";
       }
     },
 
