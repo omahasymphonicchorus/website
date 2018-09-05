@@ -77,7 +77,13 @@
   /* Customize the Apple Pay on the Web button */
   .btn-apple-pay {
     background-image: -webkit-named-image(apple-pay-logo-white);
-    background-color: black;
+    background-color: #000;
+    background-size: 100% 60%;
+    background-size: 100% 60%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    font-size: 1em;
+    padding: 1rem;
   }
   
   /* Customize the Masterpass button */
