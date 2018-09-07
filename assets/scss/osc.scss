@@ -86,21 +86,14 @@
   }
   
   /* Customize the Masterpass button */
-  .button-masterpass {
-    min-width: 200px;
-    min-height: 40px;
-    max-height: 40px;
-    padding: 0;
-    margin: 10px;
+  .btn-masterpass {
     background-image: url(https://static.masterpass.com/dyn/img/btn/global/mp_chk_btn_147x034px.svg);
     background-color: black;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    border-radius: 5px;
-    border-color: rgb(255, 255, 255);
-    cursor:pointer;
-    display: none;
+    font-size: 1em;
+    padding: 1rem;
   }
   
   #sq-walletbox {

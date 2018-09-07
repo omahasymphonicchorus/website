@@ -168,13 +168,13 @@ var paymentForm = new SqPaymentForm({
         lineItems: [
           {
             label: "Donation",
-            amount: parseFloat($('#donation-amount').val()),
+            amount: parseFloat($('#donation-amount input[name="amount"]').val()),
             pending: false
           }
         ],
         total: {
           label: "Omaha Symphonic Chorus",
-          amount: parseFloat($('#donation-amount').val()),
+          amount: parseFloat($('#donation-amount input[name="amount"]').val()),
           pending: false
         }
       };
