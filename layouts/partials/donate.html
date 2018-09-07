@@ -32,11 +32,11 @@
                 <div class="row">
                   <div class="col form-group" disabled>
                     <label></label>
-                    <div id="donation-amount" class="input-group">
+                    <div id="donation-amount" class="input-group" disabled>
                       <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                       </div>
-                      <input class="form-control" type="text" name="amount" value=50>
+                      <input class="form-control" type="text" name="amount" value=50 disabled>
                       <div class="input-group-append">
                         <span class="input-group-text">USD</span>
                       </div>
@@ -84,6 +84,14 @@
                 <div class="col form-group">
                   <label for="donation-phone">Phone number</label>
                   <input type="phone" class="form-control" name="phone" id="donation-phone">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col form-group">
+                  <label for="donation-note">Note</label>
+                  <div class="textarea-container">
+                    <textarea class="form-control" name="note" rows="2" cols="80"></textarea>
+                  </div>
                 </div>
               </div>
             </div>
