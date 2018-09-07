@@ -157,8 +157,7 @@ var paymentForm = new SqPaymentForm({
      * callback function: createPaymentRequest
      * Triggered when: a digital wallet payment button is clicked.
      */
-    createPaymentRequest: function(e) {
-      e.preventDefault();
+    createPaymentRequest: function() {
 
       return {
         requestShippingAddress: false,
