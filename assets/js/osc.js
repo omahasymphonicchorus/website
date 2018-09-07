@@ -157,10 +157,27 @@ var paymentForm = new SqPaymentForm({
      * callback function: createPaymentRequest
      * Triggered when: a digital wallet payment button is clicked.
      */
-    createPaymentRequest: function() {
-      var paymentRequestJson;
-      /* ADD CODE TO SET/CREATE paymentRequestJson */
-      return paymentRequestJson;
+    createPaymentRequest: function(e) {
+      e.preventDefault();
+
+      return {
+        requestShippingAddress: false,
+        requestBillingInfo: false,
+        countryCode: 'US',
+        currencyCode: 'USD',
+        lineItems: [
+          {
+            label: "Donation",
+            amount: parseFloat($('#donation-amount').val()),
+            pending: false
+          }
+        ],
+        total: {
+          label: "Omaha Symphonic Chorus",
+          amount: parseFloat($('#donation-amount').val()),
+          pending: false
+        }
+      };
     },
 
     /*
