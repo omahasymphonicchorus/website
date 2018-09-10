@@ -4,6 +4,11 @@ $(document).ready(function() {
       action: "homepage"
     });
   });
+
+  $('.datepicker-inline *').click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  });
 });
 
 function smoothScroll(node, e) {
