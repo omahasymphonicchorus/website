@@ -1,3 +1,5 @@
+@import 'now-ui-kit';
+
 /* 
  * Style sheet overrides and changes for OSC
  */
@@ -103,4 +105,33 @@
     text-align: center;
     vertical-align: top;
     font-weight: bold;
+  }
+
+  /* Donation buttongroup */
+  .btn-group.btn-group-donation {
+    z-index: 1200;
+
+    & > .btn.active {
+      color: $primary-color;
+      background-color: white;
+      border: 1px solid $primary-color;
+    }
+  }
+
+
+  .form-group.donation-amount-form-group {
+    margin-top: -3em;
+
+    &>.input-group .form-control {
+      padding-top: 2.5em;
+      padding-bottom: 1em;
+    }
+
+    &>.input-group .input-group-prepend>span,
+    &>.input-group .input-group-append>span {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      padding-top: 1.5em;
+      padding-bottom: 0.5em;
+    }
   }
