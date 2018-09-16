@@ -44,6 +44,7 @@
     border-radius: 30px;
     //transition: color .3s ease-in-out,border-color .3s ease-in-out,background-color .3s ease-in-out;
     display: block;
+    min-height: 36px;
     width: 100%;
     background-clip: padding-box;
     overflow: visible;
@@ -109,7 +110,7 @@
 
   /* Donation buttongroup */
   .btn-group.btn-group-donation {
-    z-index: 1200;
+    z-index: 2;
 
     & > .btn.active {
       color: $primary-color;
@@ -138,4 +139,39 @@
 
   .team-player .title {
     padding-top: 0;
+  }
+
+  .donation-processing {
+    position: fixed;
+    display: block;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(white, 0.9);
+    z-index: 1000;
+
+    .processing, .success, .failure {
+      i {
+        font-size: 10em;
+      }
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding-bottom: 10em;
+      background-color: transparent;
+    }
+
+    .processing i {
+      color: $primary-color;
+    }
+    .success i {
+      color: $success-color;
+    }
+    .failure i {
+      color: $danger-color;
+    }
   }

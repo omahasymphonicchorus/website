@@ -5,7 +5,7 @@ $(document).ready(function() {
     });
   });
 
-  $('.datepicker-inline *').click(function(e) {
+  $(".datepicker-inline *").click(function(e) {
     e.preventDefault();
     e.stopPropagation();
   });
@@ -18,47 +18,75 @@ function smoothScroll(node, e) {
     $toggle.removeClass("toggled");
     $("#bodyClick").remove();
   }, 550);
-  $("html, body").animate({
-    scrollTop: $($(node).data('target')).offset().top
-  }, 1000);
+  $("html, body").animate(
+    {
+      scrollTop: $($(node).data("target")).offset().top
+    },
+    1000
+  );
 }
 
 function submitContactForm(form, event) {
   event.preventDefault();
 
-  grecaptcha.execute('6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv', {action: 'submit'}).then(function(token) {
-    $('#g-recaptcha-response').val(token);
-    const formData = {};
-    const formElements = Array.from(form);
-    formElements.map(input => (formData[input.name] = input.value));
+  grecaptcha
+    .execute("6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv", { action: "submit" })
+    .then(function(token) {
+      $("#g-recaptcha-response").val(token);
+      const formData = {};
+      const formElements = Array.from(form);
+      formElements.map(input => (formData[input.name] = input.value));
 
-    var submitButton = $(form).find('button[type=submit]').first();
-    var origSubmitText = $(submitButton).html();
-    $(submitButton).prop('disabled', true);
-    $(submitButton).html('Sending... <i class="now-ui-icons loader_refresh spin"></i>')
-    $(form).find("input[type=text], textarea").prop('disabled', true);
-    $.post(
-      'https://02s6soxl69.execute-api.us-east-1.amazonaws.com/dev/contact',
-      JSON.stringify(formData),
-      null,
-      'json'
-    ).done(function() {
-      $("#submit-fail").remove();
-      $(form).find("input[type=text], textarea").val("");
-      $(form).find("button[type=submit]").before('<div id="submit-success" class="form-text text-success">Your message has been sent.</div>');
-      setTimeout(function() {
-        $("#submit-success").remove();
-      }, 5000);
-    }).fail(function(err) {
-      console.log(err);
-      $(form).find("button[type=submit]").before('<div id="submit-fail" class="form-text text-danger">Message submission failed: ' + err.responseJSON.message + '</div>');
-    }).always(function(data) {
-      console.log(data);
-      $(submitButton).prop('disabled', false);
-      $(submitButton).html(origSubmitText);
-      $(form).find("input[type=text], textarea").prop('disabled', false)
+      var submitButton = $(form)
+        .find("button[type=submit]")
+        .first();
+      var origSubmitText = $(submitButton).html();
+      $(submitButton).prop("disabled", true);
+      $(submitButton).html(
+        'Sending... <i class="now-ui-icons loader_refresh spin"></i>'
+      );
+      $(form)
+        .find("input[type=text], textarea")
+        .prop("disabled", true);
+      $.post(
+        "https://02s6soxl69.execute-api.us-east-1.amazonaws.com/dev/contact",
+        JSON.stringify(formData),
+        null,
+        "json"
+      )
+        .done(function() {
+          $("#submit-fail").remove();
+          $(form)
+            .find("input[type=text], textarea")
+            .val("");
+          $(form)
+            .find("button[type=submit]")
+            .before(
+              '<div id="submit-success" class="form-text text-success">Your message has been sent.</div>'
+            );
+          setTimeout(function() {
+            $("#submit-success").remove();
+          }, 5000);
+        })
+        .fail(function(err) {
+          console.log(err);
+          $(form)
+            .find("button[type=submit]")
+            .before(
+              '<div id="submit-fail" class="form-text text-danger">Message submission failed: ' +
+                err.responseJSON.message +
+                "</div>"
+            );
+        })
+        .always(function(data) {
+          console.log(data);
+          $(submitButton).prop("disabled", false);
+          $(submitButton).html(origSubmitText);
+          $(form)
+            .find("input[type=text], textarea")
+            .prop("disabled", false);
+        });
     });
-  });
 }
 
 // Set the application ID
@@ -147,13 +175,17 @@ var paymentForm = new SqPaymentForm({
       // Only show the button if Apple Pay for Web is enabled
       // Otherwise, display the wallet not enabled message.
       if (methods.applePay === true) {
-        $("#payment-type-tabs").append('<li class="nav-item"><a class="nav-link" id="donate-ap-tab" data-toggle="tab" href="#donate-ap">Apple Pay</a></li>');
+        $("#payment-type-tabs").append(
+          '<li class="nav-item"><a class="nav-link" id="donate-ap-tab" data-toggle="tab" href="#donate-ap">Apple Pay</a></li>'
+        );
         applePayBtn.style.display = "inline-block";
       }
       // Only show the button if Masterpass is enabled
       // Otherwise, display the wallet not enabled message.
       if (methods.masterpass === true) {
-        $("#payment-type-tabs").append('<li class="nav-item"><a class="nav-link" id="donate-mp-tap" data-toggle="tab" href="#donate-mp">MasterPass</a></li>');
+        $("#payment-type-tabs").append(
+          '<li class="nav-item"><a class="nav-link" id="donate-mp-tap" data-toggle="tab" href="#donate-mp">MasterPass</a></li>'
+        );
         masterpassBtn.style.display = "inline-block";
       }
     },
@@ -163,22 +195,21 @@ var paymentForm = new SqPaymentForm({
      * Triggered when: a digital wallet payment button is clicked.
      */
     createPaymentRequest: function() {
-
       return {
         requestShippingAddress: false,
         requestBillingInfo: false,
-        countryCode: 'US',
-        currencyCode: 'USD',
+        countryCode: "US",
+        currencyCode: "USD",
         lineItems: [
           {
             label: "Donation",
-            amount: parseFloat($('#donation-amount input[name="amount"]').val()),
+            amount: $('#donation-amount input[name="amount"]').val(),
             pending: false
           }
         ],
         total: {
           label: "Omaha Symphonic Chorus",
-          amount: parseFloat($('#donation-amount input[name="amount"]').val()),
+          amount: $('#donation-amount input[name="amount"]').val(),
           pending: false
         }
       };
@@ -216,13 +247,28 @@ var paymentForm = new SqPaymentForm({
         return;
       }
 
-      alert("Nonce received: " + nonce); /* FOR TESTING ONLY */
+      var donationData = {
+        amount: $("#donation-amount").val(),
+        nonce: nonce,
+        name: $("#donation-name").val(),
+        street: $("#donation-address").val(),
+        city: $("#donation-city").val(),
+        state: $("#donation-state").val(),
+        zip: cardData.billing_postal_code,
+        email: $("#donation-email").val(),
+        phone: $("#donation-phone").val(),
+        note: $("#donation-note").val()
+      };
 
-      // Assign the nonce value to the hidden form field
-      document.getElementById("card-nonce").value = nonce;
-
-      // POST the nonce form to the payment processing page
-      document.getElementById("nonce-form").submit();
+      $.post(
+        "https://02s6soxl69.execute-api.us-east-1.amazonaws.com/dev/process-donation",
+        JSON.stringify(donationData),
+        null,
+        "json"
+      )
+        .done(function() {})
+        .fail(function(err) {})
+        .always(function(data) {});
     },
 
     /*
@@ -274,12 +320,18 @@ $("#donation-form").on("hidden.bs.modal", function(e) {
   paymentForm.recalculateSize();
 });
 
-$('input[type="radio"][name="amount-btn"]').on('change', function(e) {
-  if(e.target.value === 'other') {
+$('input[type="radio"][name="amount-btn"]').on("change", function(e) {
+  if (e.target.value === "other") {
     $('#donation-amount input[name="amount"]').val("");
-    $('#donation-amount, #donation-amount input[name="amount"]').attr('disabled', false);
+    $('#donation-amount, #donation-amount input[name="amount"]').attr(
+      "disabled",
+      false
+    );
   } else {
     $('#donation-amount input[name="amount"]').val(e.target.value);
-    $('#donation-amount, #donation-amount input[name="amount"]').attr('disabled', true)
+    $('#donation-amount, #donation-amount input[name="amount"]').attr(
+      "disabled",
+      true
+    );
   }
 });
