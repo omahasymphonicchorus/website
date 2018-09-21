@@ -40,138 +40,142 @@
 
 /* Define how SqPaymentForm iframes should look */
 .sq-input {
-    border: 1px solid #e3e3e3;
-    border-radius: 30px;
-    //transition: color .3s ease-in-out,border-color .3s ease-in-out,background-color .3s ease-in-out;
-    display: block;
-    min-height: 36px;
-    width: 100%;
-    background-clip: padding-box;
-    overflow: visible;
-    margin: 0;
+  border: 1px solid #e3e3e3;
+  border-radius: 30px;
+  //transition: color .3s ease-in-out,border-color .3s ease-in-out,background-color .3s ease-in-out;
+  display: block;
+  min-height: 36px;
+  width: 100%;
+  background-clip: padding-box;
+  overflow: visible;
+  margin: 0;
+}
+
+/* Define how SqPaymentForm iframes should look when they have focus */
+.sq-input--focus {
+  outline: 5px auto rgb(59, 153, 252);
+}
+
+/* Define how SqPaymentForm iframes should look when they contain invalid values */
+.sq-input--error {
+  outline: 5px auto rgb(255, 97, 97);
+}
+
+/* Customize the "{{Wallet}} not enabled" message */
+.wallet-not-enabled {
+  min-width: 200px;
+  min-height: 40px;
+  max-height: 64px;
+  padding: 0;
+  margin: 10px;
+  line-height: 40px;
+  background: #eee;
+  border-radius: 5px;
+  font-weight: lighter;
+  font-style: italic;
+  font-family: inherit;
+  display: block;
+}
+
+/* Customize the Apple Pay on the Web button */
+.btn-apple-pay {
+  background-image: -webkit-named-image(apple-pay-logo-white);
+  background-color: #000;
+  background-size: 100% 60%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  font-size: 1em;
+  padding: 1rem;
+}
+
+/* Customize the Masterpass button */
+.btn-masterpass {
+  background-image: url(https://static.masterpass.com/dyn/img/btn/global/mp_chk_btn_147x034px.svg);
+  background-color: black;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  font-size: 1em;
+  padding: 1rem;
+}
+
+#sq-walletbox {
+  float:left;
+  margin:5px;
+  padding:10px;
+  text-align: center;
+  vertical-align: top;
+  font-weight: bold;
+}
+
+/* Donation buttongroup */
+.btn-group.btn-group-donation {
+  z-index: 2;
+
+  & > .btn.active {
+    color: $primary-color;
+    background-color: white;
+    border: 1px solid $primary-color;
   }
-  
-  /* Define how SqPaymentForm iframes should look when they have focus */
-  .sq-input--focus {
-    outline: 5px auto rgb(59, 153, 252);
+}
+
+
+.form-group.donation-amount-form-group {
+  margin-top: -3em;
+
+  &>.input-group .form-control {
+    padding-top: 2.5em;
+    padding-bottom: 1em;
   }
-  
-  /* Define how SqPaymentForm iframes should look when they contain invalid values */
-  .sq-input--error {
-    outline: 5px auto rgb(255, 97, 97);
+
+  &>.input-group .input-group-prepend>span,
+  &>.input-group .input-group-append>span {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-top: 1.5em;
+    padding-bottom: 0.5em;
   }
-  
-  /* Customize the "{{Wallet}} not enabled" message */
-  .wallet-not-enabled {
-    min-width: 200px;
-    min-height: 40px;
-    max-height: 64px;
-    padding: 0;
-    margin: 10px;
-    line-height: 40px;
-    background: #eee;
-    border-radius: 5px;
-    font-weight: lighter;
-    font-style: italic;
-    font-family: inherit;
-    display: block;
-  }
-  
-  /* Customize the Apple Pay on the Web button */
-  .btn-apple-pay {
-    background-image: -webkit-named-image(apple-pay-logo-white);
-    background-color: #000;
-    background-size: 100% 60%;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    font-size: 1em;
-    padding: 1rem;
-  }
-  
-  /* Customize the Masterpass button */
-  .btn-masterpass {
-    background-image: url(https://static.masterpass.com/dyn/img/btn/global/mp_chk_btn_147x034px.svg);
-    background-color: black;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    font-size: 1em;
-    padding: 1rem;
-  }
-  
-  #sq-walletbox {
-    float:left;
-    margin:5px;
-    padding:10px;
+}
+
+.team-player .title {
+  padding-top: 0;
+}
+
+.donation-processing {
+  position: fixed;
+  display: block;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(white, 0.9);
+  z-index: 1000;
+
+  .processing, .success, .failure {
+    i {
+      font-size: 10em;
+    }
     text-align: center;
-    vertical-align: top;
-    font-weight: bold;
-  }
-
-  /* Donation buttongroup */
-  .btn-group.btn-group-donation {
-    z-index: 2;
-
-    & > .btn.active {
-      color: $primary-color;
-      background-color: white;
-      border: 1px solid $primary-color;
-    }
-  }
-
-
-  .form-group.donation-amount-form-group {
-    margin-top: -3em;
-
-    &>.input-group .form-control {
-      padding-top: 2.5em;
-      padding-bottom: 1em;
-    }
-
-    &>.input-group .input-group-prepend>span,
-    &>.input-group .input-group-append>span {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      padding-top: 1.5em;
-      padding-bottom: 0.5em;
-    }
-  }
-
-  .team-player .title {
-    padding-top: 0;
-  }
-
-  .donation-processing {
     position: fixed;
-    display: block;
-    width: 100%;
-    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(white, 0.9);
-    z-index: 1000;
-
-    .processing, .success, .failure {
-      i {
-        font-size: 10em;
-      }
-      text-align: center;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding-bottom: 10em;
-      background-color: transparent;
-    }
-
-    .processing i {
-      color: $primary-color;
-    }
-    .success i {
-      color: $success-color;
-    }
-    .failure i {
-      color: $danger-color;
-    }
+    padding-bottom: 10em;
+    background-color: transparent;
   }
+
+  .processing i {
+    color: $primary-color;
+  }
+  .success i {
+    color: $success-color;
+  }
+  .failure i {
+    color: $danger-color;
+  }
+}
+
+.donation-processing {
+  display: none;
+}
