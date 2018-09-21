@@ -8,8 +8,23 @@
             <i class="now-ui-icons ui-1_simple-remove"></i>
           </button>
         </div>
-        <div class="modal-body">
-            <p>Your tax deductible contribution enables us to remain a healthy and vibrant organization. Thank you for your support!</p>
+        <div class="donation-processing">
+          <div class="processing">
+            <i class="now-ui-icons loader_refresh spin"></i>
+            <h3>Processing your donation...</h3>
+          </div>
+          <div class="success">
+            <i class="now-ui-icons ui-1_check"></i>
+            <h3>Thank you for your donation</h3>
+          </div>
+          <div class="failure">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+            <h3>Error processing donation:</h3>
+            <p></p>
+          </div>
+        </div>
+        <div class="modal-body donation-form">
+          <p>Your tax deductible contribution enables us to remain a healthy and vibrant organization. Thank you for your support!</p>
             <div class="card card-plain border-bottom">
               <div class="card-body">
                 <h5 class="card-title">Amount</h5>
@@ -90,7 +105,7 @@
                 <div class="col form-group">
                   <label for="donation-note">Note</label>
                   <div class="textarea-container">
-                    <textarea class="form-control" name="note" rows="2" cols="80"></textarea>
+                    <textarea class="form-control" name="note" id="donation-note" rows="2" cols="80"></textarea>
                   </div>
                 </div>
               </div>

@@ -6,4 +6,5 @@ location = '''
 Union College
 3800 S 48th St
 Lincoln, NE 68506'''
+free = true
 +++
