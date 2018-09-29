@@ -2,6 +2,7 @@
 title = "Stacie Haneline"
 position = "Pianist"
 description = "A versatile pianist, Stacie Haneline maintains an active recital career..."
+weight = 3
 
 [[ resources ]]
     name = "headshot"
