@@ -3,7 +3,7 @@ title = "Dr. Greg Zielke"
 short = "greg"
 position = "Artistic Director and Conductor"
 description = "Dr. Greg Zielke is Professor of Music and the Director of the Music Program..."
-
+weight = 1
 
 [[ resources ]]
     name = "headshot"

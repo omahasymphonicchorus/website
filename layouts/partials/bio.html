@@ -6,7 +6,7 @@
       <div class="row">
         {{ $bios := .Pages }}
         {{ range .Pages }}
-          <div class="{{ if eq (len $bios) 1 }}col-md-12{{ else if eq (len $bios) 2 }}col-md-6{{ else }}col-md-4{{ end }}">
+          <div class="{{ if eq (len $bios) 1 }}col-md-12{{ else if eq (mod (len $bios) 3) 1 }}col-md-6{{ else }}col-md-4{{ end }}">
             <div class="team-player">
               <img src="{{ $headshot := .Resources.GetMatch "headshot" }}{{ with $headshot }}{{ .RelPermalink }}{{ end }}" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
               <h4 class="title">{{ .Title }}</h4>

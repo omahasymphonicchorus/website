@@ -179,3 +179,10 @@
 .donation-processing {
   display: none;
 }
+
+.concert-alert {
+  top: 72px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}

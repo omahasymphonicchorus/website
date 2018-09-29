@@ -3,7 +3,7 @@ title = "Jonathan Mueller"
 short = "jonathan"
 position = "Assistant Conductor"
 description = "Jonathan Mueller is very excited to be the Assistant Conductor of..."
-
+weight = 2
 
 [[ resources ]]
     name = "headshot"
