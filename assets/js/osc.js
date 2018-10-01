@@ -113,11 +113,11 @@ function requestCardNonce(event) {
   // Don't submit the form until SqPaymentForm returns with a nonce
   event.preventDefault();
 
-  $('.donation-processing>.success').hide();
-  $('.donation-processing>.failure').hide();
-  $('.donation-processing>.processing').hide();
-  $('.donation-processing').show();
-  $('.donation-processing>.processing').fadeIn();
+  $(".donation-processing>.success").hide();
+  $(".donation-processing>.failure").hide();
+  $(".donation-processing>.processing").hide();
+  $(".donation-processing").show();
+  $(".donation-processing>.processing").fadeIn();
   // Request a nonce from the SqPaymentForm object
   paymentForm.requestCardNonce();
 }
@@ -253,7 +253,7 @@ var paymentForm = new SqPaymentForm({
         errors.forEach(function(error) {
           console.log("  " + error.message);
         });
-        $('.donation-processing').fadeOut();
+        $(".donation-processing").fadeOut();
 
         return;
       }
@@ -346,5 +346,3 @@ $('input[type="radio"][name="amount-btn"]').on("change", function(e) {
     );
   }
 });
-
-
