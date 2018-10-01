@@ -1,6 +1,6 @@
 $(document).ready(function() {
   grecaptcha.ready(function() {
-    grecaptcha.execute("6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv", {
+    grecaptcha.execute("{{ .Site.Params.recaptchaKey }}", {
       action: "homepage"
     });
   });
@@ -35,7 +35,7 @@ function submitContactForm(form, event) {
   event.preventDefault();
 
   grecaptcha
-    .execute("6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv", { action: "submit" })
+    .execute("{{ .Site.Params.recaptchaKey }}", { action: "submit" })
     .then(function(token) {
       $("#g-recaptcha-response").val(token);
       const formData = {};
@@ -54,7 +54,7 @@ function submitContactForm(form, event) {
         .find("input[type=text], textarea")
         .prop("disabled", true);
       $.post(
-        "https://02s6soxl69.execute-api.us-east-1.amazonaws.com/dev/contact",
+        "{{ .Site.Params.backendURL }}/contact",
         JSON.stringify(formData),
         null,
         "json"
@@ -272,7 +272,7 @@ var paymentForm = new SqPaymentForm({
       };
 
       $.post(
-        "https://02s6soxl69.execute-api.us-east-1.amazonaws.com/dev/process-donation",
+        "{{ .Site.Params.backendURL }}/process-donation",
         JSON.stringify(donationData),
         null,
         "json"

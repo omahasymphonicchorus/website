@@ -10,4 +10,5 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
 [params]
     mapsKey = "AIzaSyABFKIvLgiTzbuwBymZINW5jj1zq23_R5E"
-    recaptchaKey = "6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv"
+    recaptchaKey = "6LdH4HIUAAAAAFZ00mElSOG_9IuLWKBnrPQY3Gfp"
+    backendURL = "https://sls.omahasymphonicchorus.org/dev"
