@@ -1,6 +1,6 @@
 $(document).ready(function() {
   grecaptcha.ready(function() {
-    grecaptcha.execute("6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv", {
+    grecaptcha.execute("{{ .Site.Params.recaptchaKey }}", {
       action: "homepage"
     });
   });
@@ -26,11 +26,16 @@ function smoothScroll(node, e) {
   );
 }
 
+function smoothFade(nodeOut, nodeIn) {
+  $(nodeOut).fadeOut();
+  $(nodeIn).fadein();
+}
+
 function submitContactForm(form, event) {
   event.preventDefault();
 
   grecaptcha
-    .execute("6LcCumwUAAAAADJkv-qzMt4xMMLrduuDBLBAIPBv", { action: "submit" })
+    .execute("{{ .Site.Params.recaptchaKey }}", { action: "submit" })
     .then(function(token) {
       $("#g-recaptcha-response").val(token);
       const formData = {};
@@ -49,7 +54,7 @@ function submitContactForm(form, event) {
         .find("input[type=text], textarea")
         .prop("disabled", true);
       $.post(
-        "https://02s6soxl69.execute-api.us-east-1.amazonaws.com/dev/contact",
+        "{{ .Site.Params.backendURL }}/contact",
         JSON.stringify(formData),
         null,
         "json"
@@ -108,6 +113,11 @@ function requestCardNonce(event) {
   // Don't submit the form until SqPaymentForm returns with a nonce
   event.preventDefault();
 
+  $(".donation-processing>.success").hide();
+  $(".donation-processing>.failure").hide();
+  $(".donation-processing>.processing").hide();
+  $(".donation-processing").show();
+  $(".donation-processing>.processing").fadeIn();
   // Request a nonce from the SqPaymentForm object
   paymentForm.requestCardNonce();
 }
@@ -243,6 +253,7 @@ var paymentForm = new SqPaymentForm({
         errors.forEach(function(error) {
           console.log("  " + error.message);
         });
+        $(".donation-processing").fadeOut();
 
         return;
       }
@@ -261,7 +272,7 @@ var paymentForm = new SqPaymentForm({
       };
 
       $.post(
-        "https://02s6soxl69.execute-api.us-east-1.amazonaws.com/dev/process-donation",
+        "{{ .Site.Params.backendURL }}/process-donation",
         JSON.stringify(donationData),
         null,
         "json"
