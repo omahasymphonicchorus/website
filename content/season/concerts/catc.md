@@ -8,4 +8,5 @@ St. Cecilia Cathedral
 Omaha, NE 68131'''
 free = false
 admission = ["$30 - Preferred seating", "$20 - General seating"]
+tickets = "https://www.brownpapertickets.com/event/3628823"
 +++
