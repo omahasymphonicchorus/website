@@ -2,8 +2,8 @@
 title = "About"
 weight = 1
 description = "About the Chorus"
-quote = "This is an extremely heartfelt, uplifiting quote by a member of the chorus who loves coming to sing every week."
-quoteCredit = "John Doe"
+quote = "I don't know if it is a spiritual, physiological or psychological phenomenon, but I believe now more than ever that singing is a universal, built-in mechanism designed to cultivate empathy and compassion."
+quoteCredit = "Eric Whitacre"
 
 [[ resources ]]
     name = "about-top-left"

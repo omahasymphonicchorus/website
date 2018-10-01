@@ -1,6 +1,11 @@
+var recaptchaKey = "{{ .Site.Params.recaptchaKey }}";
+var applicationId = "{{ .Site.Params.squareApplicationID }}";
+var locationId = "{{ .Site.Params.squareLocationID }}";
+var server = "{{ .Site.Params.backendURL }}";
+
 $(document).ready(function() {
   grecaptcha.ready(function() {
-    grecaptcha.execute("{{ .Site.Params.recaptchaKey }}", {
+    grecaptcha.execute(recaptchaKey, {
       action: "homepage"
     });
   });
@@ -28,77 +33,68 @@ function smoothScroll(node, e) {
 
 function smoothFade(nodeOut, nodeIn) {
   $(nodeOut).fadeOut();
-  $(nodeIn).fadein();
+  $(nodeIn).fadeIn();
 }
 
 function submitContactForm(form, event) {
   event.preventDefault();
 
-  grecaptcha
-    .execute("{{ .Site.Params.recaptchaKey }}", { action: "submit" })
-    .then(function(token) {
-      $("#g-recaptcha-response").val(token);
-      const formData = {};
-      const formElements = Array.from(form);
-      formElements.map(input => (formData[input.name] = input.value));
+  grecaptcha.execute(recaptchaKey, { action: "submit" }).then(function(token) {
+    $("#g-recaptcha-response").val(token);
+    const formData = {};
+    const formElements = Array.from(form);
+    formElements.map(input => (formData[input.name] = input.value));
 
-      var submitButton = $(form)
-        .find("button[type=submit]")
-        .first();
-      var origSubmitText = $(submitButton).html();
-      $(submitButton).prop("disabled", true);
-      $(submitButton).html(
-        'Sending... <i class="now-ui-icons loader_refresh spin"></i>'
-      );
-      $(form)
-        .find("input[type=text], textarea")
-        .prop("disabled", true);
-      $.post(
-        "{{ .Site.Params.backendURL }}/contact",
-        JSON.stringify(formData),
-        null,
-        "json"
-      )
-        .done(function() {
-          $("#submit-fail").remove();
-          $(form)
-            .find("input[type=text], textarea")
-            .val("");
-          $(form)
-            .find("button[type=submit]")
-            .before(
-              '<div id="submit-success" class="form-text text-success">Your message has been sent.</div>'
-            );
-          setTimeout(function() {
-            $("#submit-success").remove();
-          }, 5000);
-        })
-        .fail(function(err) {
-          console.log(err);
-          $(form)
-            .find("button[type=submit]")
-            .before(
-              '<div id="submit-fail" class="form-text text-danger">Message submission failed: ' +
-                err.responseJSON.message +
-                "</div>"
-            );
-        })
-        .always(function(data) {
-          console.log(data);
-          $(submitButton).prop("disabled", false);
-          $(submitButton).html(origSubmitText);
-          $(form)
-            .find("input[type=text], textarea")
-            .prop("disabled", false);
-        });
-    });
+    var submitButton = $(form)
+      .find("button[type=submit]")
+      .first();
+    var origSubmitText = $(submitButton).html();
+    $(submitButton).prop("disabled", true);
+    $(submitButton).html(
+      'Sending... <i class="now-ui-icons loader_refresh spin"></i>'
+    );
+    $(form)
+      .find("input[type=text], textarea")
+      .prop("disabled", true);
+    $.post(server + "/contact", JSON.stringify(formData), null, "json")
+      .done(function() {
+        $("#submit-fail").remove();
+        $(form)
+          .find("input[type=text], textarea")
+          .val("");
+        $(form)
+          .find("button[type=submit]")
+          .before(
+            '<div id="submit-success" class="form-text text-success">Your message has been sent.</div>'
+          );
+        setTimeout(function() {
+          $("#submit-success").remove();
+        }, 5000);
+      })
+      .fail(function(err) {
+        console.log(err);
+        $(form)
+          .find("button[type=submit]")
+          .before(
+            '<div id="submit-fail" class="form-text text-danger">Message submission failed: ' +
+              err.responseJSON.message +
+              "</div>"
+          );
+      })
+      .always(function(data) {
+        console.log(data);
+        $(submitButton).prop("disabled", false);
+        $(submitButton).html(origSubmitText);
+        $(form)
+          .find("input[type=text], textarea")
+          .prop("disabled", false);
+      });
+  });
 }
 
 // Set the application ID
-var applicationId = "sq0idp-wcmmS4Jh5KaIE7C2Y63Dxg";
 
 // Set the location ID
-var locationId = "CAJDYVACNDP9F";
 
 /*
  * function: requestCardNonce
@@ -259,7 +255,7 @@ var paymentForm = new SqPaymentForm({
       }
 
       var donationData = {
-        amount: $("#donation-amount").val(),
+        amount: $("#donation-amount-field").val(),
         nonce: nonce,
         name: $("#donation-name").val(),
         street: $("#donation-address").val(),
@@ -272,12 +268,24 @@ var paymentForm = new SqPaymentForm({
       };
 
       $.post(
-        "{{ .Site.Params.backendURL }}/process-donation",
+        server + "/process-donation",
         JSON.stringify(donationData),
         null,
         "json"
       )
-        .done(function() {})
+        .done(function() {
+          smoothFade(
+            $(".donation-processing>.processing"),
+            $(".donation-processing>.success")
+          );
+          setTimeout(function() {
+            $(".donation-processing").hide();
+            $("#donation-form").modal("hide");
+            $("#donation-form").on("hidden.bs.modal", function() {
+              $(".donation-processing").hide();
+            });
+          }, 5000);
+        })
         .fail(function(err) {})
         .always(function(data) {});
     },
