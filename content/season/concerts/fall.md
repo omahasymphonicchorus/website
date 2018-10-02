@@ -8,3 +8,5 @@ College View Church near the Union College Campus
 Lincoln, NE 68506'''
 free = true
 +++
+
+Omaha Symphonic Chorus will join the Union College Unionaires for a fall concert at 7:30 pm on Friday, October 26, 2018 at the College View Church. 

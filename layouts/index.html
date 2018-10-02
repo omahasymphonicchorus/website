@@ -22,13 +22,14 @@
           {{ if .Params.datetimes }}
             {{ $time := (time (index .Params.datetimes 0)) }}
               {{ if now.After ($time.AddDate 0 -1 0) }}
+              {{ $tabID := ( .File.BaseFileName | urlize ) }}
               <div class="alert alert-info alert-dismissable concert-alert" role="alert">
                   <div class="container-fluid">
                       <div class="alert-icon">
                           <i class="now-ui-icons ui-1_calendar-60"></i>
                       </div>
                       
-                      <strong>Upcoming concert</strong> {{ .Title }}, {{ $time.Format "January 2 at 3:04PM"}}. {{ if .Params.tickets }}<a href="{{ .Params.tickets }}" class="alert-link">TICKETS</a>{{ end }}
+                      <strong>Upcoming concert</strong> {{ .Title }}, {{ $time.Format "January 2 at 3:04PM"}}. <a href="#{{ $tabID }}" class="alert-link">More info</a>{{ if .Params.tickets }}<a href="{{ .Params.tickets }}" class="alert-link">TICKETS</a>{{ end }}
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                               <span aria-hidden="true">
                               <i class="now-ui-icons ui-1_simple-remove"></i>
