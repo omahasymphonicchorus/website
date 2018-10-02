@@ -244,13 +244,15 @@ var paymentForm = new SqPaymentForm({
       shippingContact
     ) {
       if (errors) {
-        // Log errors from nonce generation to the Javascript console
-        console.log("Encountered errors:");
-        errors.forEach(function(error) {
-          console.log("  " + error.message);
-        });
-        $(".donation-processing").fadeOut();
-
+        $(".donation-processing>.failure>.message").html(
+          errors.map(function(error) {
+            return error.message + "<br/>";
+          })
+        );
+        smoothFade(
+          $(".donation-processing>.processing"),
+          $(".donation-processing>.failure")
+        );
         return;
       }
 
@@ -266,6 +268,43 @@ var paymentForm = new SqPaymentForm({
         phone: $("#donation-phone").val(),
         note: $("#donation-note").val()
       };
+
+      /* validate inputs */
+      errs = [];
+      if (!validator.isCurrency(donationData.amount)) {
+        errs.push("Invalid donation amount.");
+      }
+      if (validator.isEmpty(donationData.name)) {
+        errs.push("Please enter a name.");
+      }
+      if (validator.isEmpty(donationData.street)) {
+        errs.push("Please enter a billing street address.");
+      }
+      if (validator.isEmpty(donationData.city)) {
+        errs.push("Please enter a valid billing city.");
+      }
+      if (validator.isEmpty(donationData.state)) {
+        errs.push("Please enter a valid billing state.");
+      }
+      if (!validator.isPostalCode(donationData.zip, "US")) {
+        errs.push("Please enter a valid billing zip code.");
+      }
+      if (!validator.isEmail(donationData.email)) {
+        errs.push("Please enter a valid email address.");
+      }
+
+      if (errs.length) {
+        $(".donation-processing>.failure>.message").html(
+          errs.map(function(error) {
+            return error + "<br/>";
+          })
+        );
+        smoothFade(
+          $(".donation-processing>.processing"),
+          $(".donation-processing>.failure")
+        );
+        return;
+      }
 
       $.post(
         server + "/process-donation",
@@ -286,7 +325,18 @@ var paymentForm = new SqPaymentForm({
             });
           }, 5000);
         })
-        .fail(function(err) {})
+        .fail(function(err) {
+          const serverError = JSON.parse(err.responseJSON.response.text);
+          $(".donation-processing>.failure>.message").html(
+            serverError.errors.map(function(error) {
+              return error.detail + "<br/>";
+            })
+          );
+          smoothFade(
+            $(".donation-processing>.processing"),
+            $(".donation-processing>.failure")
+          );
+        })
         .always(function(data) {});
     },
 
@@ -353,4 +403,9 @@ $('input[type="radio"][name="amount-btn"]').on("change", function(e) {
       true
     );
   }
+});
+
+$("#dismiss-donation-failure").click(function() {
+  $(".donation-processing>.failure").hide();
+  $(".donation-processing").hide();
 });
