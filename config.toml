@@ -11,7 +11,7 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 [params]
     mapsKey = "AIzaSyABFKIvLgiTzbuwBymZINW5jj1zq23_R5E"
     recaptchaKey = "6LdH4HIUAAAAAFZ00mElSOG_9IuLWKBnrPQY3Gfp"
-    squareApplicationID = "sandbox-sq0idp-wcmmS4Jh5KaIE7C2Y63Dxg"
-    squareLocationID = "CAJDYVACNDP9F"
+    squareApplicationID = "sq0idp-Dci8dLeU0ozmVGlnwq2RVA"
+    squareLocationID = "6J17D3TNR87DJ"
     backendURL = "https://sls.omahasymphonicchorus.org"
     
