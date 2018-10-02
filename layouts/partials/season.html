@@ -62,11 +62,11 @@
                             <li>Admission TBD</li>
                           {{ end }}
                         </ul>
-                      {{ end }}
-                      {{ if .Params.tickets }}
-                        <a class="btn btn-primary" target="_blank" href="{{ .Params.tickets }}">Purchase tickets</a>
-                      {{ else }}
-                        <button class="btn btn-default" disabled>Tickets coming soon</button>
+                        {{ if .Params.tickets }}
+                          <a class="btn btn-primary" target="_blank" href="{{ .Params.tickets }}">Purchase tickets</a>
+                        {{ else }}
+                          <button class="btn btn-default" disabled>Tickets coming soon</button>
+                        {{ end }}
                       {{ end }}
                       <hr>
                       {{ .Content }}
