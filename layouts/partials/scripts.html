@@ -1,6 +1,7 @@
+{{ $validatorScript := resources.Get "js/validator.js" }}
 {{ $bsdpScript := resources.Get "js/bootstrap-datepicker.js" }}
 {{ $nowUIScript := resources.Get "js/now-ui-kit.js" }}
 {{ $oscScript := resources.Get "js/osc.js" }}
-{{ $js := slice $bsdpScript $nowUIScript $oscScript | resources.Concat "js/bundle.js" | resources.ExecuteAsTemplate "js/bundle.js" . | resources.Minify | resources.Fingerprint }}
+{{ $js := slice $validatorScript $bsdpScript $nowUIScript $oscScript | resources.Concat "js/bundle.js" | resources.ExecuteAsTemplate "js/bundle.js" . |  resources.Fingerprint }}
 
 <script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}"></script>
