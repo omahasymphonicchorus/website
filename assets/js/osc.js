@@ -243,6 +243,9 @@ var paymentForm = new SqPaymentForm({
       billingContact,
       shippingContact
     ) {
+      console.log(cardData);
+      console.log(billingContact);
+      console.log(shippingContact);
       if (errors) {
         $(".donation-processing>.failure>.message").html(
           errors.map(function(error) {
