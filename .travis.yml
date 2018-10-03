@@ -7,7 +7,7 @@ addons:
     packages:
       - libstdc++-4.9-dev
 env:
-  - PATH=$PATH:$TRAVIS_BUILD_DIR HUGO_VER=0.48
+  - PATH=$PATH:$TRAVIS_BUILD_DIR HUGO_VER=0.49
 before_install: # necessary because of linking issues
   - wget -q -O libstdc++6 http://security.ubuntu.com/ubuntu/pool/main/g/gcc-5/libstdc++6_5.4.0-6ubuntu1~16.04.10_amd64.deb
   - sudo dpkg --force-all -i libstdc++6

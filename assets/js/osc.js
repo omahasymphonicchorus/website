@@ -313,6 +313,14 @@ var paymentForm = new SqPaymentForm({
         "json"
       )
         .done(function() {
+          $("#donation-amount-field").val(50);
+          $("#donation-name").val("");
+          $("#donation-address").val("");
+          $("#donation-city").val("");
+          $("#donation-state").val("");
+          $("#donation-email").val("");
+          $("#donation-phone").val("");
+          $("#donation-note").val("");
           smoothFade(
             $(".donation-processing>.processing"),
             $(".donation-processing>.success")
