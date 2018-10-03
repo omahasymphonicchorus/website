@@ -272,6 +272,12 @@ var paymentForm = new SqPaymentForm({
         note: $("#donation-note").val()
       };
 
+      if(cardData.digital_wallet_type === "NONE") {
+        donationData.zip = cardData.billing_postal_code;
+      } else {
+        donationData.zip = billingContact.postalCode;
+      }
+
       /* validate inputs */
       errs = [];
       if (!validator.isCurrency(donationData.amount)) {
