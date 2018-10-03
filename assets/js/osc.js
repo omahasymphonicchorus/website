@@ -277,10 +277,10 @@ var paymentForm = new SqPaymentForm({
         note: $("#donation-note").val()
       };
 
-      if(cardData.digital_wallet_type === "NONE") {
-        donationData.zip = cardData.billing_postal_code;
-      } else {
+      if(cardData.digital_wallet_type === "APPLE_PAY") {
         donationData.zip = billingContact.postalCode;
+      } else {
+        donationData.zip = cardData.billing_postal_code;
       }
 
       /* validate inputs */
