@@ -21,8 +21,16 @@
         {{ range $index, $value := .Pages }}
           {{ if .Params.datetimes }}
             {{ $time := (time (index .Params.datetimes 0)) }}
-              {{ if now.After ($time.AddDate 0 -1 0) }}
-              {{ $tabID := ( .File.BaseFileName | urlize ) }}
+              {{ if (and (now.After ($time.AddDate 0 -1 0)) (now.Before ($time.AddDate 0 0 1))) }}
+                {{ if (and (.Resources.GetMatch "poster") (now.After ($time.AddDate 0 0 -7))) }}
+                  <div class="interstitial">
+                    <div class="closer">
+                      <a href="#" onclick="$('.interstitial').fadeOut();">Continue to site</a>
+                    </div>
+                    <img src="{{ $poster := .Resources.GetMatch "poster" }}{{ with $poster }}{{ .RelPermalink }}{{ end }}">
+                  </div>
+                {{ end }}
+              {{ $tabID := .UniqueID }}
               <div class="alert alert-info alert-dismissable concert-alert" role="alert">
                   <div class="container-fluid">
                       <div class="alert-icon">
