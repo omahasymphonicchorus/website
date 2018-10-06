@@ -7,7 +7,7 @@
           <ul class="nav nav-tabs justify-content-center" role="tablist">
             {{ with .GetPage "concerts" }}
               {{ range $index, $value := .Pages }}
-                {{ $tabID := ( .File.BaseFileName | urlize ) }}
+                {{ $tabID := ( .UniqueID ) }}
                 <li class="nav-item">
                   <a class="nav-link{{ if eq $index 0 }} active{{ end }}" id="{{ $tabID }}-tab" data-toggle="tab" href="#{{ $tabID }}" role="tab" aria-controls="home" aria-selected="{{if eq $index 0}}true{{ else }}false{{ end }}">{{ $value.Title }}</a>
                 </li>
@@ -19,11 +19,12 @@
           <div class="tab-content">
             {{ with .GetPage "concerts" }}
               {{ range $index, $value := .Pages }}
-                {{ $tabID := ( .File.BaseFileName | urlize ) }}
+                {{ $tabID := ( .UniqueID ) }}
                 <div class="tab-pane{{ if eq $index 0 }} active{{ end }}" id="{{ $tabID }}" role="tabpanel" aria-labelledby="{{ $tabID }}-tab">
                   <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 mx-auto">
                       {{ if .Params.datetimes }}<div class="date-picker" data-provide="datepicker-inline" data-date-multidate=true data-date="{{ delimit ( apply .Params.datetimes "dateFormat" "01/02/2006" "." ) "," }}" disabled></div>{{ end }}
+                      {{ if .Resources.GetMatch "poster" }}{{ $poster := .Resources.GetMatch "poster" }}{{ with $poster }}<img src="{{ .RelPermalink }}">{{ end }}{{ end }}
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-7 col-sm-12">
                       <h4 class="card-title">
