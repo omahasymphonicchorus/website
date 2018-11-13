@@ -1,87 +1,94 @@
 {{ with .Site.GetPage "section" "season" }}
-  <div class="section section-season bg-light" id="{{ .Title | urlize }}">
-    <div class="container">
-      <h2 class="title text-center">{{ .Title }}</h2>
-      <div class="card">
-        <div class="card-header text-center">
-          <ul class="nav nav-tabs justify-content-center" role="tablist">
-            {{ with .GetPage "concerts" }}
-              {{ range $index, $value := .Pages }}
-                {{ $tabID := ( .UniqueID ) }}
-                <li class="nav-item">
-                  <a class="nav-link{{ if eq $index 0 }} active{{ end }}" id="{{ $tabID }}-tab" data-toggle="tab" href="#{{ $tabID }}" role="tab" aria-controls="home" aria-selected="{{if eq $index 0}}true{{ else }}false{{ end }}">{{ $value.Title }}</a>
-                </li>
-              {{ end }}
-            {{ end }}
-          </ul>
-        </div>
-        <div class="card-body">
-          <div class="tab-content">
-            {{ with .GetPage "concerts" }}
-              {{ range $index, $value := .Pages }}
-                {{ $tabID := ( .UniqueID ) }}
-                <div class="tab-pane{{ if eq $index 0 }} active{{ end }}" id="{{ $tabID }}" role="tabpanel" aria-labelledby="{{ $tabID }}-tab">
-                  <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 mx-auto">
-                      {{ if .Params.datetimes }}<div class="date-picker" data-provide="datepicker-inline" data-date-multidate=true data-date="{{ delimit ( apply .Params.datetimes "dateFormat" "01/02/2006" "." ) "," }}" disabled></div>{{ end }}
-                      {{ if .Resources.GetMatch "poster" }}{{ $poster := .Resources.GetMatch "poster" }}{{ with $poster }}<img src="{{ .RelPermalink }}">{{ end }}{{ end }}
-                    </div>
-                    <div class="col-xl-5 col-lg-4 col-md-7 col-sm-12">
-                      <h4 class="card-title">
-                        {{ .Title }}
-                      </h4>
-                      <h5>
-                        {{ if .Params.datetimes }}
-                          {{ range .Params.datetimes }}
-                            {{ if (eq (time .).Hour 0) }}
-                              {{ dateFormat "Monday, Jan _2, 2006" . }}, time TBD<br>
-                            {{ else }}
-                              {{ dateFormat "Monday, Jan _2, 2006, 3:04PM" . }}<br>
-                            {{ end }}
-                          {{ end }}
-                        {{ end }}
-                      </h5>
-                      <p>
-                        {{ if .Params.location }}
-                          {{ replace .Params.location "\n" "<br/>" | safeHTML }}
-                        {{ else }}
-                          Location TBD
-                        {{ end }}
-                      </p>
-                      <hr>
-                        {{ if .Params.free }}
-                        <ul>
-                          <li>This is a free concert for the community.</li>
-                        </ul>
-                      {{ else }}
-                        <ul>
-                          {{ if .Params.admission }}
-                          {{ range .Params.admission }}
-                            <li>{{ . }}</li>
-                          {{ end }}
-                          {{ else }}
-                            <li>Admission TBD</li>
-                          {{ end }}
-                        </ul>
-                        {{ if .Params.tickets }}
-                          <a class="btn btn-primary" target="_blank" href="{{ .Params.tickets }}">Purchase tickets</a>
-                        {{ else }}
-                          <button class="btn btn-default" disabled>Tickets coming soon</button>
-                        {{ end }}
-                      {{ end }}
-                      <hr>
-                      {{ .Content }}
-                    </div>
-                    <div class="col-lg-4 col-sm-12 align-self-stretch">
-                      <div class="map h-100" data-address="{{ .Params.location }}"></div>
-                    </div>
-                  </div>
-                </div>
-              {{ end }}
-            {{ end }}
+{{ $scratch := newScratch }}
+{{ $scratch.Set "initIndex" -1 }}{{ with .GetPage "concerts" }}{{ range $index, $value := .Pages }}{{ if .Params.datetimes }}{{ range .Params.datetimes }}{{ if ( and ( (time .).After now ) (lt ($scratch.Get "initIndex") 0))}}{{ $scratch.Set "initIndex" $index }}{{ end }}{{ end }}{{ end }}{{ end }}{{ end }}
+<div class="section section-season bg-light" id="{{ .Title | urlize }}">
+  <div class="container">
+    <h2 class="title text-center">{{ .Title }}</h2>
+    <div class="card">
+      <div class="card-header text-center">
+        <ul class="nav nav-tabs justify-content-center" role="tablist">
+          {{ with .GetPage "concerts" }}
+          {{ range $index, $value := .Pages }}
+          {{ $tabID := ( .UniqueID ) }}
+          <li class="nav-item">
+            <a class="nav-link{{ if eq $index ($scratch.Get "initIndex") }} active{{ end }}" id="{{ $tabID }}-tab"
+              data-toggle="tab" href="#{{ $tabID }}" role="tab" aria-controls="home" aria-selected="{{if eq $index 0}}true{{ else }}false{{ end }}">{{ $value.Title }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+      <div class="card-body">
+        <div class="tab-content">
+          {{ with .GetPage "concerts" }}
+          {{ range $index, $value := .Pages }}
+          {{ $tabID := ( .UniqueID ) }}
+          <div class="tab-pane{{ if eq $index ($scratch.Get "initIndex") }} active{{ end }}" id="{{ $tabID }}" role="tabpanel"
+            aria-labelledby="{{ $tabID }}-tab">
+            <div class="row">
+              <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 mx-auto">
+                {{ if .Params.datetimes }}
+                <div class="date-picker" data-provide="datepicker-inline" data-date-multidate=true data-date="{{ delimit ( apply .Params.datetimes "dateFormat" "01/02/2006" "." ) "," }}"
+                  disabled></div>{{ end }}
+                {{ if .Resources.GetMatch "poster" }}{{ $poster := .Resources.GetMatch "poster" }}{{ with $poster }}<img
+                  src="{{ .RelPermalink }}">{{ end }}{{ end }}
+              </div>
+              <div class="col-xl-5 col-lg-4 col-md-7 col-sm-12">
+                <h4 class="card-title">
+                  {{ .Title }}
+                </h4>
+                <h5>
+                  {{ if .Params.datetimes }}
+                  {{ range .Params.datetimes }}
+                  {{ if (eq (time .).Hour 0) }}
+                  {{ dateFormat "Monday, Jan _2, 2006" . }}, time TBD<br>
+                  {{ else }}
+                  {{ dateFormat "Monday, Jan _2, 2006, 3:04PM" . }}<br>
+                  {{ end }}
+                  {{ end }}
+                  {{ end }}
+                </h5>
+                <p>
+                  {{ if .Params.location }}
+                  {{ replace .Params.location "\n" "<br/>" | safeHTML }}
+                  {{ else }}
+                  Location TBD
+                  {{ end }}
+                </p>
+                <hr>
+                {{ if .Params.free }}
+                <ul>
+                  <li>This is a free concert for the community.</li>
+                </ul>
+                {{ else }}
+                <ul>
+                  {{ if .Params.admission }}
+                  {{ range .Params.admission }}
+                  <li>{{ . }}</li>
+                  {{ end }}
+                  {{ else }}
+                  <li>Admission TBD</li>
+                  {{ end }}
+                </ul>
+                {{ if .Params.tickets }}
+                <a class="btn btn-primary" target="_blank" href="{{ .Params.tickets }}">Purchase tickets</a>
+                {{ else }}
+                <button class="btn btn-default" disabled>Tickets coming soon</button>
+                {{ end }}
+                {{ end }}
+                <hr>
+                {{ .Content }}
+              </div>
+              <div class="col-lg-4 col-sm-12 align-self-stretch">
+                <div class="map h-100" data-address="{{ .Params.location }}"></div>
+              </div>
+            </div>
           </div>
+          {{ end }}
+          {{ end }}
         </div>
       </div>
     </div>
   </div>
+</div>
 {{ end }}
