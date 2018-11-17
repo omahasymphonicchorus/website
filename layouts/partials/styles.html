@@ -1,8 +1,10 @@
-{{ $nowUIStyle := resources.Get "scss/now-ui-kit.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-{{ $oscStyle := resources.Get "scss/osc.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+{{ $nowUIStyle := resources.Get "scss/now-ui-kit.scss" | resources.ToCSS ( dict "outputStyle" "compressed" ) | resources.Fingerprint }}
+{{ $oscStyle := resources.Get "scss/osc.scss" | resources.ToCSS ( dict "outputStyle" "compressed" ) | resources.Fingerprint }}
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,700" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">  
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
 <link rel="stylesheet" href="{{ $nowUIStyle.Permalink }}" />
 <link rel="stylesheet" href="{{ $oscStyle.Permalink }}" />
