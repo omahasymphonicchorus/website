@@ -1,7 +1,7 @@
 +++
 title = "Support"
 description = "Support the Omaha Symphonic Chorus"
-weight = 3
+weight = 300
 +++
 
 The Omaha Symphonic Chorus depends on the generosity of individuals, businesses and foundations to help us bring the joy of live choral music to the Omaha Community. The costs of managing and promoting a concert season and of hiring the instrumental musicians who accompany us are significant. Your tax deductible contribution enables us to remain a healthy and vibrant organization. Please make a gift to our Annual Fund today!
