@@ -1,6 +1,6 @@
 +++
 title = "About"
-weight = 1
+weight = 100
 description = "About the Chorus"
 quote = "I don't know if it is a spiritual, physiological or psychological phenomenon, but I believe now more than ever that singing is a universal, built-in mechanism designed to cultivate empathy and compassion."
 quoteCredit = "Eric Whitacre"
