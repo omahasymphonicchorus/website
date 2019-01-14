@@ -16,3 +16,5 @@ Members of the Omaha Symphonic Chorus will sweep you off to New York City with t
 The afternoon performance will be the show with general seating.
 
 The evening performance will be the same show as a gala with small plates along with silent and live auctions. Seating will be at tables of six.
+
+These two performances are focused on fundraising to allow Omaha Symphonic Chorus to continue to provide the highest quality vocal music possible in the area.  We welcome and appreciate our audience patronage in helping to fulfill that mission and look forward to that partnership continuing in the future.
