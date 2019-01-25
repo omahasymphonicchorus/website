@@ -40,7 +40,7 @@
         {{ if .Params.datetimes }}
         {{ $time := (time (index .Params.datetimes 0)) }}
         {{ if (and (now.After ($time.AddDate 0 -1 0)) (now.Before ($time.AddDate 0 0 1))) }}
-        {{ if (and (.Resources.GetMatch "poster") (now.After ($time.AddDate 0 0 ( default -7 (int (sub 0 .Params.posterDays )))))) }}
+        {{ if (and (.Resources.GetMatch "poster") (now.After ($time.AddDate 0 0 ( default -7 (int (sub 0 (cond (isset .Params "posterDays") .Params.posterDays 14 ))))))) }}
         <div class="interstitial">
           <div class="closer">
             <a href="#" onclick="$('.interstitial').fadeOut();">Continue to site</a>
