@@ -19,12 +19,28 @@
       <div class="page-header clear-filter" filter-color="orange">
         <div class="page-header-image" data-parallax="true" style="background-image:url('{{ $splash := .Resources.GetMatch "above-fold-backsplash" }}{{ with $splash }}{{ .RelPermalink }}{{ end }}');">
         </div>
+        {{ if (and .Params.announcement (now.Before .Params.announcementExpires)) }}
+        <div class="alert alert-danger alert-dismissable concert-alert" role="alert">
+          <div class="container-fluid">
+            <div class="alert-icon">
+              <i class="now-ui-icons ui-1_bell-53"></i>
+            </div>
+
+            <strong>Announcement</strong> {{ .Params.announcement }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+        {{ end }}
         {{ with .Site.GetPage "season/concerts" }}
         {{ range $index, $value := .Pages }}
         {{ if .Params.datetimes }}
         {{ $time := (time (index .Params.datetimes 0)) }}
         {{ if (and (now.After ($time.AddDate 0 -1 0)) (now.Before ($time.AddDate 0 0 1))) }}
-        {{ if (and (.Resources.GetMatch "poster") (now.After ($time.AddDate 0 0 ( default -7 (int (sub 0 .Params.posterDays )))))) }}
+        {{ if (and (.Resources.GetMatch "poster") (now.After ($time.AddDate 0 0 ( default -7 (int (sub 0 (cond (isset .Params "posterDays") .Params.posterDays 14 ))))))) }}
         <div class="interstitial">
           <div class="closer">
             <a href="#" onclick="$('.interstitial').fadeOut();">Continue to site</a>
