@@ -9,6 +9,7 @@ Omaha, NE 68107'''
 free = false
 admission = ["$25 - Matinee General Seating", "$20 - Matinee Students and Seniors", "$75 - Evening Gala with Small Plates"]
 tickets = "https://www.brownpapertickets.com/event/4052763"
+
 posterDays = 30
 
 [[ resources ]]
