@@ -37,6 +37,9 @@
                 <h4 class="card-title">
                   {{ .Title }}
                 </h4>
+                <h6 class="card-subtitle mb-3 text-muted">
+                  {{ if .Params.subtitle }}{{ .Params.subtitle }}{{ end }}
+                </h6>
                 <h5>
                   {{ if .Params.datetimes }}
                   {{ range .Params.datetimes }}
