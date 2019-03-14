@@ -15,20 +15,19 @@ posterDays = 30
 
 The first half of the concert clearly illustrates the two sided coin with the following selections:
 
-My Spirit Sang All Day - Gerald Finzi
-How Lovely are Thy Dwelling Places from "A German Requiem" -
-   Johannes Brahms
-Songs of Joy (newly commissioned) - David Gardner
-Come, Sweet Death - J.S. Bach
-Soon ah will be Done - Spiritual - Arr. William Dawson
-Let Thy Love be Heard - Jake Runestad
-Dark Night of the Soul - Ola Gjeilo
-The Storm is Passing Over - Arr. Barbara Baker
-
+* My Spirit Sang All Day - Gerald Finzi
+* How Lovely are Thy Dwelling Places from "A German Requiem" - Johannes Brahms
+* Songs of Joy (newly commissioned) - David Gardner
+* Come, Sweet Death - J.S. Bach
+* Soon ah will be Done - Spiritual - Arr. William Dawson
+* Let Thy Love be Heard - Jake Runestad
+* Dark Night of the Soul - Ola Gjeilo
+* The Storm is Passing Over - Arr. Barbara Baker
 
 The second half of the concert will feature: 
 
 Requiem for the Living - Dan Forrest
+
 1. Introit - Kyrie 
 2. Vanitas Vanitatum
 3. Agnus Dei
