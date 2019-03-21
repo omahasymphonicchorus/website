@@ -12,36 +12,40 @@
         <span class="navbar-toggler-bar bottom-bar"></span>
       </button>
     </div>
-    <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
+    <div class="collapse navbar-collapse justify-content-end" id="navigation"
+      data-nav-image="./assets/img/blurred-image-1.jpg">
       <ul class="navbar-nav">
         {{ range .Site.Sections }}
         <li class="nav-item">
           <!-- a class="nav-link" href="#{{ .Title | urlize }}" -->
-          <a class="nav-link" href="javascript:void(0);" data-target="#{{ .Title | urlize }}" onclick="smoothScroll(this, event)">
+          <a class="nav-link" href="javascript:void(0);" data-target="#{{ .Title | urlize }}"
+            onclick="smoothScroll(this, event)">
             <p>{{ .Title }}</p>
           </a>
         </li>
         {{ end }}
         <li class="nav-item">
-          <button id="donate-button" class="nav-link btn btn-neutral" data-toggle="modal" data-target="#donation-form">DONATE</button>
+          <button id="donate-button" class="nav-link btn btn-neutral" data-toggle="modal"
+            data-target="#donation-form">DONATE</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link" rel="tooltip" title="Rehearsal and event calendar" data-placement="bottom" href="https://calendar.google.com/calendar/embed?src=calendar%40omahasymphonicchorus.org&ctz=America%2FChicago"
+          <a class="nav-link" rel="tooltip" title="Rehearsal and event calendar" data-placement="bottom"
+            href="https://calendar.google.com/calendar/embed?src=calendar%40omahasymphonicchorus.org&ctz=America%2FChicago"
             target="_blank">
             <i class="far fa-calendar"></i>
-            <p class="d-lg-none d-xl-none">Amazon Smile</p>
+            <p class="d-lg-none d-xl-none">Calendar</p>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/OmahaSymphonicChorus"
-            target="_blank">
+          <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom"
+            href="https://www.facebook.com/OmahaSymphonicChorus" target="_blank">
             <i class="fab fa-facebook"></i>
             <p class="d-lg-none d-xl-none">Facebook</p>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" rel="tooltip" title="Support us through a purchase from Amazon Smile" data-placement="bottom"
-            href="https://smile.amazon.com" target="_blank">
+          <a class="nav-link" rel="tooltip" title="Support us through a purchase from Amazon Smile"
+            data-placement="bottom" href="https://smile.amazon.com" target="_blank">
             <i class="fab fa-amazon"></i>
             <p class="d-lg-none d-xl-none">Amazon Smile</p>
           </a>
