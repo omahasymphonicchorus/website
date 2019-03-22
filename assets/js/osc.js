@@ -3,14 +3,14 @@ var applicationId = "{{ .Site.Params.squareApplicationID }}";
 var locationId = "{{ .Site.Params.squareLocationID }}";
 var server = "{{ .Site.Params.backendURL }}";
 
-$(document).ready(function() {
-  grecaptcha.ready(function() {
+$(document).ready(function () {
+  grecaptcha.ready(function () {
     grecaptcha.execute(recaptchaKey, {
       action: "homepage"
     });
   });
 
-  $(".datepicker-inline *").click(function(e) {
+  $(".datepicker-inline *").click(function (e) {
     e.preventDefault();
     e.stopPropagation();
   });
@@ -19,7 +19,7 @@ $(document).ready(function() {
 function smoothScroll(node, e) {
   $("html").removeClass("nav-open");
   nowuiKit.misc.navbar_menu_visible = 0;
-  setTimeout(function() {
+  setTimeout(function () {
     $toggle.removeClass("toggled");
     $("#bodyClick").remove();
   }, 550);
@@ -39,7 +39,7 @@ function smoothFade(nodeOut, nodeIn) {
 function submitContactForm(form, event) {
   event.preventDefault();
 
-  grecaptcha.execute(recaptchaKey, { action: "submit" }).then(function(token) {
+  grecaptcha.execute(recaptchaKey, { action: "submit" }).then(function (token) {
     $("#g-recaptcha-response").val(token);
     const formData = {};
     const formElements = Array.from(form);
@@ -57,7 +57,7 @@ function submitContactForm(form, event) {
       .find("input[type=text], textarea")
       .prop("disabled", true);
     $.post(server + "/contact", JSON.stringify(formData), null, "json")
-      .done(function() {
+      .done(function () {
         $("#submit-fail").remove();
         $(form)
           .find("input[type=text], textarea")
@@ -67,21 +67,21 @@ function submitContactForm(form, event) {
           .before(
             '<div id="submit-success" class="form-text text-success">Your message has been sent.</div>'
           );
-        setTimeout(function() {
+        setTimeout(function () {
           $("#submit-success").remove();
         }, 5000);
       })
-      .fail(function(err) {
+      .fail(function (err) {
         console.log(err);
         $(form)
           .find("button[type=submit]")
           .before(
             '<div id="submit-fail" class="form-text text-danger">Message submission failed: ' +
-              err.responseJSON.message +
-              "</div>"
+            err.responseJSON.message +
+            "</div>"
           );
       })
-      .always(function(data) {
+      .always(function (data) {
         console.log(data);
         $(submitButton).prop("disabled", false);
         $(submitButton).html(origSubmitText);
@@ -177,7 +177,7 @@ var paymentForm = new SqPaymentForm({
      * callback function: methodsSupported
      * Triggered when: the page is loaded.
      */
-    methodsSupported: function(methods) {
+    methodsSupported: function (methods) {
       var applePayBtn = document.getElementById("sq-apple-pay");
       var applePayLabel = document.getElementById("sq-apple-pay-label");
       var googlePayBtn = document.getElementById("sq-google-pay");
@@ -215,7 +215,7 @@ var paymentForm = new SqPaymentForm({
      * callback function: createPaymentRequest
      * Triggered when: a digital wallet payment button is clicked.
      */
-    createPaymentRequest: function() {
+    createPaymentRequest: function () {
       $(".donation-processing>.success").hide();
       $(".donation-processing>.failure").hide();
       $(".donation-processing>.processing").hide();
@@ -246,7 +246,7 @@ var paymentForm = new SqPaymentForm({
      * Triggered when: a shipping address is selected/changed in a digital
      *                 wallet UI that supports address selection.
      */
-    validateShippingContact: function(contact) {
+    validateShippingContact: function (contact) {
       var validationErrorObj;
       /* ADD CODE TO SET validationErrorObj IF ERRORS ARE FOUND */
       return validationErrorObj;
@@ -256,7 +256,7 @@ var paymentForm = new SqPaymentForm({
      * callback function: cardNonceResponseReceived
      * Triggered when: SqPaymentForm completes a card nonce request
      */
-    cardNonceResponseReceived: function(
+    cardNonceResponseReceived: function (
       errors,
       nonce,
       cardData,
@@ -268,7 +268,7 @@ var paymentForm = new SqPaymentForm({
       console.log(shippingContact);
       if (errors) {
         $(".donation-processing>.failure>.message").html(
-          errors.map(function(error) {
+          errors.map(function (error) {
             return error.message + "<br/>";
           })
         );
@@ -292,7 +292,7 @@ var paymentForm = new SqPaymentForm({
         note: $("#donation-note").val()
       };
 
-      if(cardData.digital_wallet_type === "APPLE_PAY") {
+      if (cardData.digital_wallet_type === "APPLE_PAY" || cardData.digtial_wallet_type === "GOOGLE PAY") {
         donationData.zip = billingContact.postalCode;
       } else {
         donationData.zip = cardData.billing_postal_code;
@@ -324,7 +324,7 @@ var paymentForm = new SqPaymentForm({
 
       if (errs.length) {
         $(".donation-processing>.failure>.message").html(
-          errs.map(function(error) {
+          errs.map(function (error) {
             return error + "<br/>";
           })
         );
@@ -341,7 +341,7 @@ var paymentForm = new SqPaymentForm({
         null,
         "json"
       )
-        .done(function() {
+        .done(function () {
           $("#donation-amount-field").val(50);
           $("#donation-name").val("");
           $("#donation-address").val("");
@@ -354,18 +354,18 @@ var paymentForm = new SqPaymentForm({
             $(".donation-processing>.processing"),
             $(".donation-processing>.success")
           );
-          setTimeout(function() {
+          setTimeout(function () {
             $(".donation-processing").hide();
             $("#donation-form").modal("hide");
-            $("#donation-form").on("hidden.bs.modal", function() {
+            $("#donation-form").on("hidden.bs.modal", function () {
               $(".donation-processing").hide();
             });
           }, 5000);
         })
-        .fail(function(err) {
+        .fail(function (err) {
           const serverError = JSON.parse(err.responseJSON.response.text);
           $(".donation-processing>.failure>.message").html(
-            serverError.errors.map(function(error) {
+            serverError.errors.map(function (error) {
               return error.detail + "<br/>";
             })
           );
@@ -374,14 +374,14 @@ var paymentForm = new SqPaymentForm({
             $(".donation-processing>.failure")
           );
         })
-        .always(function(data) {});
+        .always(function (data) { });
     },
 
     /*
      * callback function: unsupportedBrowserDetected
      * Triggered when: the page loads and an unsupported browser is detected
      */
-    unsupportedBrowserDetected: function() {
+    unsupportedBrowserDetected: function () {
       /* PROVIDE FEEDBACK TO SITE VISITORS */
     },
 
@@ -389,7 +389,7 @@ var paymentForm = new SqPaymentForm({
      * callback function: inputEventReceived
      * Triggered when: visitors interact with SqPaymentForm iframe elements.
      */
-    inputEventReceived: function(inputEvent) {
+    inputEventReceived: function (inputEvent) {
       switch (inputEvent.eventType) {
         case "focusClassAdded":
           /* HANDLE AS DESIRED */
@@ -416,17 +416,17 @@ var paymentForm = new SqPaymentForm({
      * callback function: paymentFormLoaded
      * Triggered when: SqPaymentForm is fully loaded
      */
-    paymentFormLoaded: function() {
+    paymentFormLoaded: function () {
       /* HANDLE AS DESIRED */
     }
   }
 });
 
-$("#donation-form").on("hidden.bs.modal", function(e) {
+$("#donation-form").on("hidden.bs.modal", function (e) {
   paymentForm.recalculateSize();
 });
 
-$('input[type="radio"][name="amount-btn"]').on("change", function(e) {
+$('input[type="radio"][name="amount-btn"]').on("change", function (e) {
   if (e.target.value === "other") {
     $('#donation-amount input[name="amount"]').val("");
     $('#donation-amount, #donation-amount input[name="amount"]').attr(
@@ -442,7 +442,7 @@ $('input[type="radio"][name="amount-btn"]').on("change", function(e) {
   }
 });
 
-$("#dismiss-donation-failure").click(function() {
+$("#dismiss-donation-failure").click(function () {
   $(".donation-processing>.failure").hide();
   $(".donation-processing").hide();
 });
