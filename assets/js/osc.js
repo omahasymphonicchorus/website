@@ -144,6 +144,11 @@ var paymentForm = new SqPaymentForm({
     elementId: "sq-apple-pay"
   },
 
+  // Initialize Google Pay placeholder ID
+  googlePay: {
+    elementId: "sq-google-pay"
+  },
+
   // Initialize Masterpass placeholder ID
   masterpass: {
     elementId: "sq-masterpass"
@@ -175,6 +180,8 @@ var paymentForm = new SqPaymentForm({
     methodsSupported: function(methods) {
       var applePayBtn = document.getElementById("sq-apple-pay");
       var applePayLabel = document.getElementById("sq-apple-pay-label");
+      var googlePayBtn = document.getElementById("sq-google-pay");
+      var googlePayLabel = document.getElementById("sq-google-pay-label");
       var masterpassBtn = document.getElementById("sq-masterpass");
       var masterpassLabel = document.getElementById("sq-masterpass-label");
 
@@ -185,6 +192,14 @@ var paymentForm = new SqPaymentForm({
           '<li class="nav-item"><a class="nav-link" id="donate-ap-tab" data-toggle="tab" href="#donate-ap">Apple Pay</a></li>'
         );
         applePayBtn.style.display = "inline-block";
+      }
+      // Only show the button if Google Pay is enabled
+      // Otherwise, display the wallet not enabled message.
+      if (methods.googlePay === true) {
+        $("#payment-type-tabs").append(
+          '<li class="nav-item"><a class="nav-link" id="donate-gp-tab" data-toggle="tab" href="#donate-gp">Google Pay</a></li>'
+        );
+        googlePayBtn.style.display = "inline-block";
       }
       // Only show the button if Masterpass is enabled
       // Otherwise, display the wallet not enabled message.
