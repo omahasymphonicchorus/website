@@ -315,7 +315,7 @@ var paymentForm = new SqPaymentForm({
       if (validator.isEmpty(donationData.state)) {
         errs.push("Please enter a valid billing state.");
       }
-      if (!validator.isPostalCode(donationData.zip, "US")) {
+      if (!donationData.zip || !validator.isPostalCode(donationData.zip, "US")) {
         errs.push("Please enter a valid billing zip code.");
       }
       if (!validator.isEmail(donationData.email)) {
