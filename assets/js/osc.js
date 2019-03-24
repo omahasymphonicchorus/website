@@ -292,7 +292,8 @@ var paymentForm = new SqPaymentForm({
         note: $("#donation-note").val()
       };
 
-      if (cardData.digital_wallet_type === "APPLE_PAY" || cardData.digtial_wallet_type === "GOOGLE PAY") {
+      console.log(cardData.digital_wallet_type);
+      if (cardData.digital_wallet_type === "APPLE_PAY" || cardData.digital_wallet_type === "GOOGLE_PAY") {
         donationData.zip = billingContact.postalCode;
       } else {
         donationData.zip = cardData.billing_postal_code;
