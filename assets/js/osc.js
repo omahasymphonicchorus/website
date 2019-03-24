@@ -223,7 +223,7 @@ var paymentForm = new SqPaymentForm({
       $(".donation-processing>.processing").fadeIn();
       return {
         requestShippingAddress: false,
-        requestBillingInfo: false,
+        requestBillingInfo: true,
         countryCode: "US",
         currencyCode: "USD",
         lineItems: [
@@ -292,8 +292,7 @@ var paymentForm = new SqPaymentForm({
         note: $("#donation-note").val()
       };
 
-      console.log(cardData.digital_wallet_type);
-      if (cardData.digital_wallet_type === "APPLE_PAY" || cardData.digital_wallet_type === "GOOGLE_PAY") {
+      if (cardData.digital_wallet_type === "APPLE_PAY") {
         donationData.zip = billingContact.postalCode;
       } else {
         donationData.zip = cardData.billing_postal_code;
@@ -316,8 +315,10 @@ var paymentForm = new SqPaymentForm({
       if (validator.isEmpty(donationData.state)) {
         errs.push("Please enter a valid billing state.");
       }
-      if (!validator.isPostalCode(donationData.zip, "US")) {
-        errs.push("Please enter a valid billing zip code.");
+      if(donationData.zip) { // need to check here because Google doesn't give us a ZIP
+        if (!validator.isPostalCode(donationData.zip, "US")) {
+          errs.push("Please enter a valid billing zip code.");
+        }
       }
       if (!validator.isEmail(donationData.email)) {
         errs.push("Please enter a valid email address.");
