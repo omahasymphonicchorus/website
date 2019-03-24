@@ -315,10 +315,8 @@ var paymentForm = new SqPaymentForm({
       if (validator.isEmpty(donationData.state)) {
         errs.push("Please enter a valid billing state.");
       }
-      if(donationData.zip) { // need to check here because Google doesn't give us a ZIP
-        if (!validator.isPostalCode(donationData.zip, "US")) {
-          errs.push("Please enter a valid billing zip code.");
-        }
+      if (!validator.isPostalCode(donationData.zip, "US")) {
+        errs.push("Please enter a valid billing zip code.");
       }
       if (!validator.isEmail(donationData.email)) {
         errs.push("Please enter a valid email address.");
