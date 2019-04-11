@@ -11,6 +11,10 @@ free = false
 admission = ["$25 - General admission", "$20 - Students and seniors" ]
 tickets = "https://requiem-living.brownpapertickets.com/"
 posterDays = 30
+
+[[ resources ]]
+    name = "poster"
+    src = "poster.jpg"
 +++
 
 The first half of the concert clearly illustrates the two sided coin with the following selections:
