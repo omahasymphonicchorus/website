@@ -1,4 +1,4 @@
 +++
-title = "2018-2019 Season"
+title = "2019-2020 Season"
 weight = 250
 +++
