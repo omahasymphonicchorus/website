@@ -1,19 +1,53 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  hugo_version: 0.57.1
 
+steps:
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    git config --global user.email "cicd@omahasymphonicchorus.org"
+    git config --global user.name "OCS CI/CD"
+- script: git clone --single-branch --branch gh-pages https://${GITHUB_PAT}@github.com/omahasymphonicchorus/website public
+  displayName: 'Clone PR build branch'
+  env:
+    GITHUB_PAT: $(github_pat)
+  condition: eq(variables['Build.Reason'], 'PullRequest')
+- script: git clone --single-branch --branch master https://${GITHUB_PAT}@github.com/omahasymphonicchorus/omahasymphonicchorus.github.io public
+  displayName: 'Clone production build branch'
+  env:
+    GITHUB_PAT: $(github_pat)
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+- script: |
+    wget https://github.com/gohugoio/hugo/releases/download/v$(hugo_version)/hugo_extended_$(hugo_version)_Linux-64bit.tar.gz
+    tar xfvz hugo_extended_$(hugo_version)_Linux-64bit.tar.gz
+  displayName: 'Install Hugo'
+- script: ./hugo
+  displayName: 'Build site'
+- script: |
+    pushd public
+    git add . && git commit -m "Production deploy"
+    git push origin master
+    popd
+  displayName: 'Production deploy'
+  env:
+    GITHUB_PAT: $(github_pat)
+  condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
+- script: |
+    pushd public
+    sed -i'' 's/omahasymphonicchorus.org/preview.omahasymphonicchorus.org/' CNAME
+    git add . && git commit -m "PR deploy"
+    git push origin gh-pages
+    popd
+  displayName: 'PR deploy'
+  env:
+    GITHUB_PAT: $(github_pat)
+  condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+- script: |
+    sed -i'' '/public/d' .gitignore
+    git add public && git commit -m "PR deploy"
+
+
