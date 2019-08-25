@@ -3,7 +3,7 @@
 {{ $scratch.Set "initIndex" -1 }}{{ with .GetPage "concerts" }}{{ range $index, $value := .Pages }}{{ if .Params.datetimes }}{{ range .Params.datetimes }}{{ if ( and ( (time .).After now ) (lt ($scratch.Get "initIndex") 0))}}{{ $scratch.Set "initIndex" $index }}{{ end }}{{ end }}{{ end }}{{ end }}{{ end }}
 <div class="section section-season bg-white" id="{{ .Title | urlize }}">
   <div class="container">
-    <h2 class="title text-center">{{ .Title }}</h2>
+    <h2 class="title text-center">{{ .Description }}</h2>
     <div class="card">
       <div class="card-header text-center">
         <ul class="nav nav-tabs justify-content-center" role="tablist">
