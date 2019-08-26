@@ -42,7 +42,7 @@ steps:
   displayName: 'Production deploy'
   env:
     GITHUB_PAT: $(github_pat)
-  condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'Schedule'))
+  condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'Schedule', 'Manual'))
 - script: |
     pushd public
     sed -i'' 's/omahasymphonicchorus.org/preview.omahasymphonicchorus.org/' CNAME
