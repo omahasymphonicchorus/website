@@ -7,7 +7,7 @@ location = '''
 UNO Strauss Performing Arts Center
 6305 University Dr N
 Omaha, NE 68182'''
-admission = [ "$5 - General admission" ]
-tickets="https://commerce.cashnet.com/cashnetg/selfserve/EditItem.aspx?PC=CW-MUS1010G+&ItemCount=14"
+admission = [ "$5 - General admission", "$4 - Students/Seniors(60+)/Children/Military" ]
+tickets="https://commerce.cashnet.com/cashnetg/selfserve/BrowseCatalog.aspx?CNAME=MUSIC"
 +++
 
