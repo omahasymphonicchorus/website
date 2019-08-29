@@ -28,7 +28,7 @@ steps:
   displayName: 'Clone production build branch'
   env:
     GITHUB_PAT: $(github_pat)
-  condition: in(variables['Build.Reason'], 'IndividualCI', 'Schedule')
+  condition: in(variables['Build.Reason'], 'IndividualCI', 'Schedule', 'Manual')
 - script: |
     wget https://github.com/gohugoio/hugo/releases/download/v$(hugo_version)/hugo_extended_$(hugo_version)_Linux-64bit.tar.gz
     tar xfvz hugo_extended_$(hugo_version)_Linux-64bit.tar.gz
