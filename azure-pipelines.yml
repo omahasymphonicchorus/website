@@ -54,8 +54,3 @@ steps:
   env:
     GITHUB_PAT: $(github_pat)
   condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
-- script: |
-    sed -i'' '/public/d' .gitignore
-    git add public && git commit -m "PR deploy"
-
-
