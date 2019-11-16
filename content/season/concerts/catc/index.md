@@ -10,4 +10,8 @@ free = false
 admission = ["$30 - Preferred seating", "$20 - General seating"]
 tickets = "https://www.brownpapertickets.com/event/4431045"
 posterDays = 30
+
+[[ resources ]]
+    name = "poster"
+    src = "poster.jpg"
 +++
