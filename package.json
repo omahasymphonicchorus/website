@@ -1,10 +1,21 @@
 {
   "name": "website",
-  "version": "0.1.0",
+  "version": "2.0.0",
+  "description": "Omaha Symphonic Chorus website built with Vue and Hugo",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "start": "run-p start:**",
+    "start:hugo": "hugo -d ../dist -s site -vw",
+    "start:vue": "vue-cli-service serve",
+    "preview": "run-p preview:**",
+    "preview:hugo": "npm run start:hugo -- -D -F",
+    "preview:vue": "npm run start:vue",
+    "prebuild": "rimraf dist",
+    "build": "npm run build:vue && npm run build:hugo",
+    "build:preview": "npum run build:vue && npm run build:hugo:preview",
+    "build:hugo": "hugo -d ../dist -s site -v",
+    "build:hugo:preview": "npm run build:hugo -- -D -F",
+    "build:vue": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -18,6 +29,8 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.0",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {

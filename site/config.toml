@@ -1,3 +1,6 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
+disableKinds = ["RSS", "sitemap", "taxonomy", "taxonomyTerm"]
+
+[outputs]
+    page = ["json"]
+    section = ["json"]
+    home = ["json"]
