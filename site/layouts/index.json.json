@@ -1,3 +1,11 @@
 {
-    "title": "{{ .Site.Title }}"
+    "title": "{{ .Site.Title }}",
+    "sections": [
+        {{ range $index, $e := .Site.Sections -}}
+        {{ if $index -}},{{end -}} {
+            "title": "{{ .Title }}",
+            "link": "#{{ .Title | urlize }}"
+        }
+        {{ end }}
+    ]   
 }

@@ -10,6 +10,15 @@
       <template>
         <a class="navbar-brand" href="/">{{ content.title }}</a>
       </template>
+      <template slot="navbar-menu">
+        <li
+          class="nav-item"
+          v-for="section in content.sections"
+          v-bind:key="section.title"
+        >
+          <a class="nav-link" :href="section.link">{{ section.title }}</a>
+        </li>
+      </template>
     </Navbar>
   </header>
 </template>

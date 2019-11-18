@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AppHeader :content="content" />
+    <AppHeader v-if="content" :content="content" />
     <AppFooter />
   </div>
 </template>
