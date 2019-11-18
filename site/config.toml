@@ -1,3 +1,5 @@
+title = "Omaha Symphonic Chorus"
+
 disableKinds = ["RSS", "sitemap", "taxonomy", "taxonomyTerm"]
 
 [outputs]
