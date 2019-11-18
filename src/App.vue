@@ -13,7 +13,6 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,200");
-@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 
 .fade-enter-active,
 .fade-leave-active {

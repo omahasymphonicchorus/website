@@ -2,18 +2,22 @@
   <div id="site">
     <transition name="fade">
       <Header v-if="content" :content="content" />
-      <Footer />
     </transition>
+
+    <Main />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "./Header.vue";
+import Main from "./Main";
 import Footer from "./Footer.vue";
 
 export default {
   components: {
     Header,
+    Main,
     Footer
   },
   data: function() {
