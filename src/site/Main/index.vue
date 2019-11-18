@@ -1,9 +1,16 @@
 <template>
-  <main />
+  <main class="wrapper">
+    <PageHeader filter-color="orange" />
+  </main>
 </template>
 
 <script>
-export default {};
+import PageHeader from "./PageHeader";
+export default {
+  components: {
+    PageHeader
+  }
+};
 </script>
 
 <style></style>
