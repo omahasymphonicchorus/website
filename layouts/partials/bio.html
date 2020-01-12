@@ -1,7 +1,12 @@
 
-<div class="section section-team text-center">
+<div class="section section-team text-center" id="{{ .Title | urlize }}">
   <div class="container">
     <h2 class="title">{{ .Title }}</h2>
+    {{ if .Content }}
+    <div class="jumbotron">
+      {{ .Content }}
+    </div>
+    {{ end }}
     <div class="team">
       <div class="row justify-content-center">
         {{ $bios := .Pages }}
