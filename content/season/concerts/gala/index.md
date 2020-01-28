@@ -10,7 +10,7 @@ Omaha, NE 68131'''
 free = false
 admission = ["$50"]
 tickets = "https://www.brownpapertickets.com/event/4503069"
-posterDays = 30
+posterDays = 40
 
 [[ resources ]]
     name = "poster"
