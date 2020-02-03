@@ -10,6 +10,11 @@ Omaha, NE 68131'''
 free = false
 admission = ["$50"]
 tickets = "https://www.brownpapertickets.com/event/4503069"
+posterDays = 40
+
+[[ resources ]]
+    name = "poster"
+    src = "poster.jpg"
 +++
 
 6:00 p.m. Savouries and Mead (aka Appetizers and Beverages) 
