@@ -2,13 +2,13 @@
 title = "Mead, Music and Merriment"
 subtitle = "How our Hero Eric won Isabella OR An evening of daring deeds and fantastical fables OR Things not to do on a quest or ..."
 weight = 3
-datetimes = [ "2020-02-28T18:00:00-05:00" ]
+datetimes = [ "2020-02-29T18:00:00-05:00" ]
 location = '''
-The Pella at Blackstone
-303 S 41st St
-Omaha, NE 68131'''
+Beautiful Savior Lutheran Church
+7706 S 96th St
+La Vista, NE 68128'''
 free = false
-admission = ["$50"]
+admission = ["$25"]
 tickets = "https://www.brownpapertickets.com/event/4503069"
 posterDays = 40
 
