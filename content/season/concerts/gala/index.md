@@ -1,6 +1,6 @@
 +++
-title = "Mead, Music and Merriment"
-subtitle = "How our Hero Eric won Isabella OR An evening of daring deeds and fantastical fables OR Things not to do on a quest or ..."
+title = "A Night of Music and Merriment"
+subtitle = "How our Hero Eric won Isabella OR An evening of daring deeds and fantastical fables OR Things not to do on a quest OR ..."
 weight = 3
 datetimes = [ "2020-02-29T18:00:00-05:00" ]
 location = '''
