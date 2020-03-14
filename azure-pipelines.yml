@@ -1,6 +1,9 @@
 trigger:
 - master
 
+pr:
+- master
+
 schedules:
 - cron: "0 0 * * *"
   displayName: Daily build and deploy
@@ -13,7 +16,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  hugo_version: 0.62.2
+  hugo_version: 0.67.0
 
 steps:
 - script: |

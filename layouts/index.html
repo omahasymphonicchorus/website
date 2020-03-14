@@ -19,7 +19,7 @@
       <div class="page-header clear-filter" filter-color="orange">
         <div class="page-header-image" data-parallax="true" style="background-image:url('{{ $splash := .Resources.GetMatch "above-fold-backsplash" }}{{ with $splash }}{{ .RelPermalink }}{{ end }}');">
         </div>
-        {{ if (and (isset .Params "announcement") (isset .Params "announcmentExpires")) }}
+        {{ if (and .Params.announcement .Params.announcementExpires) }}
         {{ if (now.Before .Params.announcementExpires) }}
         <div class="alert alert-danger alert-dismissable concert-alert" role="alert">
           <div class="container-fluid">
