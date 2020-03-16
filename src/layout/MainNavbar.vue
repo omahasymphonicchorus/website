@@ -6,10 +6,52 @@
     :color-on-scroll="colorOnScroll"
     menu-classes="ml-auto"
   >
-    <template slot-scope="{ toggle, isToggled }">
-      <router-link v-popover:popover1 class="navbar-brand" to="/">
-        Now Ui Kit
-      </router-link>
+    <template>
+      <a v-popover:popover1 class="navbar-brand" :href="site.baseURL">
+        {{ site.title }}
+      </a>
+    </template>
+    <template slot="navbar-menu">
+      <li
+        v-for="section in site.sections"
+        :key="section.title"
+        class="nav-item"
+      >
+        <a class="nav-link" :href="section.href">
+          <p>{{ section.title }}</p>
+        </a>
+      </li>
+    </template>
+  </navbar>
+</template>
+
+<script>
+import { Navbar } from "@/components";
+export default {
+  name: "main-navbar",
+  components: {
+    Navbar
+  },
+  props: {
+    transparent: Boolean,
+    colorOnScroll: Number,
+    site: Object
+  }
+};
+</script>
+
+<!--<template>
+  <navbar
+    position="fixed"
+    type="primary"
+    :transparent="transparent"
+    :color-on-scroll="colorOnScroll"
+    menu-classes="ml-auto"
+  >
+    <template>
+      <a v-popover:popover1 class="navbar-brand" :href="baseURL">
+        {{ title }}
+      </a>
       <el-popover
         ref="popover1"
         popper-class="popover"
@@ -121,18 +163,24 @@
 </template>
 
 <script>
-import { DropDown, NavbarToggleButton, Navbar, NavLink } from "@/components";
+import {
+  DropDown,
+  /*NavbarToggleButton,*/ Navbar,
+  NavLink
+} from "@/components";
 import { Popover } from "element-ui";
 export default {
   name: "main-navbar",
   props: {
     transparent: Boolean,
-    colorOnScroll: Number
+    colorOnScroll: Number,
+    baseURL: String,
+    title: String
   },
   components: {
     DropDown,
     Navbar,
-    NavbarToggleButton,
+    //NavbarToggleButton,
     NavLink,
     [Popover.name]: Popover
   }
@@ -140,3 +188,4 @@ export default {
 </script>
 
 <style scoped></style>
+-->

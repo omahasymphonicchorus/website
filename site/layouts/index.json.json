@@ -1,0 +1,10 @@
+{
+    "title": "{{ .Site.Title -}}",
+    "baseURL": "{{ .Site.BaseURL -}}",
+    "sections": [{{ range $i, $e := .Site.Sections }}{{ if $i }}, {{ end }}
+        {
+            "title": "{{ .Title }}",
+            "href": "#{{ .Title | urlize }}"
+        }{{ end }}
+    ]
+}
