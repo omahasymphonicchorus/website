@@ -16,7 +16,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  hugo_version: 0.67.0
+  hugo_version: 0.69.2
 
 steps:
 - script: |
