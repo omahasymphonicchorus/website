@@ -14,4 +14,8 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     squareApplicationID = "sq0idp-Dci8dLeU0ozmVGlnwq2RVA"
     squareLocationID = "6J17D3TNR87DJ"
     backendURL = "https://sls.omahasymphonicchorus.org"
-    
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
