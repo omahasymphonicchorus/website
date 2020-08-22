@@ -9,7 +9,8 @@
     <title>
       {{ .Site.Title }}
     </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+      name='viewport' />
     {{ partial "styles.html" . }}
   </head>
 
@@ -17,7 +18,8 @@
     {{ partial "navbar.html" . }}
     <div class="wrapper">
       <div class="page-header clear-filter" filter-color="orange">
-        <div class="page-header-image" data-parallax="true" style="background-image:url('{{ $splash := .Resources.GetMatch "above-fold-backsplash" }}{{ with $splash }}{{ .RelPermalink }}{{ end }}');">
+        <div class="page-header-image" data-parallax="true"
+          style="background-image:url('{{ $splash := .Resources.GetMatch "above-fold-backsplash" }}{{ with $splash }}{{ .RelPermalink }}{{ end }}');">
         </div>
         {{ if (and .Params.announcement .Params.announcementExpires) }}
         {{ if (now.Before .Params.announcementExpires) }}
@@ -27,7 +29,8 @@
               <i class="now-ui-icons ui-1_bell-53"></i>
             </div>
 
-            <strong>Announcement</strong> {{ .Params.announcement }} {{ if .Params.announcementLink }}<a class="alert-link" href="{{ .Params.announcementLink}}">Details</a>{{ end }}
+            <strong>Announcement</strong> {{ .Params.announcement }} {{ if .Params.announcementLink }}<a
+              class="alert-link" href="{{ .Params.announcementLink}}">Details</a>{{ end }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">
                 <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -57,8 +60,11 @@
               <i class="now-ui-icons ui-1_calendar-60"></i>
             </div>
 
-            <strong>Upcoming concert</strong> {{ .Title }}, {{ $time.Format "January 2 at 3:04PM"}} {{if (isset .Params.datetimes 1)}}{{if (eq (time (index .Params.datetimes 1)).YearDay $time.YearDay)}}and {{ (time (index .Params.datetimes 1)).Format "3:04PM" }}{{end}}{{end}}. <a href="#{{ $tabID }}"
-              class="alert-link">More info</a>{{ if .Params.tickets }} | <a href="{{ .Params.tickets }}" class="alert-link">TICKETS</a>{{ end }}
+            <strong>Upcoming concert</strong> {{ .Title }}, {{ $time.Format "January 2 at 3:04PM"}}
+            {{if (isset .Params.datetimes 1)}}{{if (eq (time (index .Params.datetimes 1)).YearDay $time.YearDay)}}and
+            {{ (time (index .Params.datetimes 1)).Format "3:04PM" }}{{end}}{{end}}. <a href="#{{ $tabID }}"
+              class="alert-link">More info</a>{{ if .Params.tickets }} | <a href="{{ .Params.tickets }}"
+              class="alert-link">TICKETS</a>{{ end }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">
                 <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -83,7 +89,7 @@
       <div class="main landing-page">
         {{ partial "about.html" . }}
         {{ partial "tickets.html" . }}
-        {{ partial "season.html" . }}
+        {{ partial "season-covid.html" . }}
         {{ partial "support.html" . }}
         {{ partial "partners.html" . }}
         {{ partial "contact.html" . }}
@@ -94,7 +100,8 @@
             &copy;
             <script>
               document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script> Omaha Symphonic Chorus, a 501(c)(3) non-profit. Based on <a href="https://www.creative-tim.com/product/now-ui-kit">Now
+            </script> Omaha Symphonic Chorus, a 501(c)(3) non-profit. Based on <a
+              href="https://www.creative-tim.com/product/now-ui-kit">Now
               UI Kit</a>.
           </div>
         </div>
@@ -102,18 +109,21 @@
     </div>
     {{ partial "donate.html" . }}
     <!--   Core JS Files   -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
       crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
       crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
       crossorigin="anonymous"></script>
     <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js" integrity="sha256-sAkXLwDFSAB/S09JCOWRvnoOnhGYDu9VqMnbCKAhMzI="
-      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"
+      integrity="sha256-sAkXLwDFSAB/S09JCOWRvnoOnhGYDu9VqMnbCKAhMzI=" crossorigin="anonymous"></script>
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/11.1.0/nouislider.min.js" integrity="sha256-IB524Svhneql+nv1wQV7OKsccHNhx8OvsGmbF6WCaM0="
-      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/11.1.0/nouislider.min.js"
+      integrity="sha256-IB524Svhneql+nv1wQV7OKsccHNhx8OvsGmbF6WCaM0=" crossorigin="anonymous"></script>
     <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js" integrity="sha256-TueWqYu0G+lYIimeIcMI8x1m14QH/DQVt4s9m/uuhPw=" crossorigin="anonymous"></script>-->
     <!--  Google Maps and reCaptcha Plugins    -->
