@@ -6,7 +6,7 @@ var server = "{{ .Site.Params.backendURL }}";
 $(document).ready(function () {
   grecaptcha.ready(function () {
     grecaptcha.execute(recaptchaKey, {
-      action: "homepage"
+      action: "homepage",
     });
   });
 
@@ -25,7 +25,7 @@ function smoothScroll(node, e) {
   }, 550);
   $("html, body").animate(
     {
-      scrollTop: $($(node).data("target")).offset().top
+      scrollTop: $($(node).data("target")).offset().top,
     },
     1000
   );
@@ -43,25 +43,19 @@ function submitContactForm(form, event) {
     $("#g-recaptcha-response").val(token);
     const formData = {};
     const formElements = Array.from(form);
-    formElements.map(input => (formData[input.name] = input.value));
+    formElements.map((input) => (formData[input.name] = input.value));
 
-    var submitButton = $(form)
-      .find("button[type=submit]")
-      .first();
+    var submitButton = $(form).find("button[type=submit]").first();
     var origSubmitText = $(submitButton).html();
     $(submitButton).prop("disabled", true);
     $(submitButton).html(
       'Sending... <i class="now-ui-icons loader_refresh spin"></i>'
     );
-    $(form)
-      .find("input[type=text], textarea")
-      .prop("disabled", true);
-    $.post(server + "/contact", JSON.stringify(formData), null, "json")
+    $(form).find("input[type=text], textarea").prop("disabled", true);
+    $.post(server + "/contact", JSON.stringify(formData))
       .done(function () {
         $("#submit-fail").remove();
-        $(form)
-          .find("input[type=text], textarea")
-          .val("");
+        $(form).find("input[type=text], textarea").val("");
         $(form)
           .find("button[type=submit]")
           .before(
@@ -77,17 +71,15 @@ function submitContactForm(form, event) {
           .find("button[type=submit]")
           .before(
             '<div id="submit-fail" class="form-text text-danger">Message submission failed: ' +
-            err.responseJSON.message +
-            "</div>"
+              err.responseJSON.message +
+              "</div>"
           );
       })
       .always(function (data) {
         console.log(data);
         $(submitButton).prop("disabled", false);
         $(submitButton).html(origSubmitText);
-        $(form)
-          .find("input[type=text], textarea")
-          .prop("disabled", false);
+        $(form).find("input[type=text], textarea").prop("disabled", false);
       });
   });
 }
@@ -135,40 +127,40 @@ var paymentForm = new SqPaymentForm({
       fontWeight: "300",
       fontSize: ".8571em",
       lineHeight: "normal",
-      padding: "10px 18px"
-    }
+      padding: "10px 18px",
+    },
   ],
 
   // Initialize Apple Pay placeholder ID
   applePay: {
-    elementId: "sq-apple-pay"
+    elementId: "sq-apple-pay",
   },
 
   // Initialize Google Pay placeholder ID
   googlePay: {
-    elementId: "sq-google-pay"
+    elementId: "sq-google-pay",
   },
 
   // Initialize Masterpass placeholder ID
   masterpass: {
-    elementId: "sq-masterpass"
+    elementId: "sq-masterpass",
   },
 
   // Initialize the credit card placeholders
   cardNumber: {
     elementId: "sq-card-number",
-    placeholder: "•••• •••• •••• ••••"
+    placeholder: "•••• •••• •••• ••••",
   },
   cvv: {
     elementId: "sq-cvv",
-    placeholder: "CVV"
+    placeholder: "CVV",
   },
   expirationDate: {
     elementId: "sq-expiration-date",
-    placeholder: "MM/YY"
+    placeholder: "MM/YY",
   },
   postalCode: {
-    elementId: "sq-postal-code"
+    elementId: "sq-postal-code",
   },
 
   // SqPaymentForm callback functions
@@ -230,14 +222,14 @@ var paymentForm = new SqPaymentForm({
           {
             label: "Donation",
             amount: $('#donation-amount input[name="amount"]').val(),
-            pending: false
-          }
+            pending: false,
+          },
         ],
         total: {
           label: "Omaha Symphonic Chorus",
           amount: $('#donation-amount input[name="amount"]').val(),
-          pending: false
-        }
+          pending: false,
+        },
       };
     },
 
@@ -289,7 +281,7 @@ var paymentForm = new SqPaymentForm({
         zip: cardData.billing_postal_code,
         email: $("#donation-email").val(),
         phone: $("#donation-phone").val(),
-        note: $("#donation-note").val()
+        note: $("#donation-note").val(),
       };
 
       if (!cardData.billing_postal_code) {
@@ -315,7 +307,10 @@ var paymentForm = new SqPaymentForm({
       if (validator.isEmpty(donationData.state)) {
         errs.push("Please enter a valid billing state.");
       }
-      if (!donationData.zip || !validator.isPostalCode(donationData.zip, "US")) {
+      if (
+        !donationData.zip ||
+        !validator.isPostalCode(donationData.zip, "US")
+      ) {
         errs.push("Please enter a valid billing zip code.");
       }
       if (!validator.isEmail(donationData.email)) {
@@ -335,12 +330,7 @@ var paymentForm = new SqPaymentForm({
         return;
       }
 
-      $.post(
-        server + "/process-donation",
-        JSON.stringify(donationData),
-        null,
-        "json"
-      )
+      $.post(server + "/process-donation", JSON.stringify(donationData))
         .done(function () {
           $("#donation-amount-field").val(50);
           $("#donation-name").val("");
@@ -374,7 +364,7 @@ var paymentForm = new SqPaymentForm({
             $(".donation-processing>.failure")
           );
         })
-        .always(function (data) { });
+        .always(function (data) {});
     },
 
     /*
@@ -418,8 +408,8 @@ var paymentForm = new SqPaymentForm({
      */
     paymentFormLoaded: function () {
       /* HANDLE AS DESIRED */
-    }
-  }
+    },
+  },
 });
 
 $("#donation-form").on("hidden.bs.modal", function (e) {
