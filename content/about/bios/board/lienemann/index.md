@@ -1,5 +1,5 @@
 +++ 
-title = "Rick Lienemmann"
+title = "Rick Lienemann"
 
 [[ resources ]]
     name = "headshot"
