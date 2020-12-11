@@ -67,7 +67,19 @@
   </url>
   
   <url>
+    <loc>/about/bios/board/koster/</loc>
+  </url>
+  
+  <url>
     <loc>/about/bios/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/glaze_b/</loc>
   </url>
   
   <url>
@@ -75,7 +87,19 @@
   </url>
   
   <url>
+    <loc>/about/bios/board/adkins/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/gardner/</loc>
+  </url>
+  
+  <url>
     <loc>/partners/dickinson/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/rokusek/</loc>
   </url>
   
   <url>
@@ -87,11 +111,43 @@
   </url>
   
   <url>
+    <loc>/about/bios/board/zielke/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/stickler/</loc>
+  </url>
+  
+  <url>
     <loc>/partners/immanuel/</loc>
   </url>
   
   <url>
+    <loc>/about/bios/board/williams/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/mueller/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/johnson/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/mills/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/rice/</loc>
+  </url>
+  
+  <url>
     <loc>/partners/kios/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/green/</loc>
   </url>
   
   <url>
@@ -104,6 +160,10 @@
   
   <url>
     <loc>/partners/ls/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/clayton/</loc>
   </url>
   
   <url>
@@ -135,11 +195,35 @@
   </url>
   
   <url>
+    <loc>/about/bios/board/lienemann/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/hutcherson/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/glaze_r/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/lemburg/</loc>
+  </url>
+  
+  <url>
     <loc>/partners/studiob/</loc>
   </url>
   
   <url>
     <loc>/about/history/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/wheeler/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/bios/board/allgood/</loc>
   </url>
   
   <url>
