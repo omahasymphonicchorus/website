@@ -1,5 +1,6 @@
 +++ 
-title = "Rick Lienemann"
+title = "Rick Leinemann"
+roles = [ "Member at Large" ]
 
 [[ resources ]]
     name = "headshot"

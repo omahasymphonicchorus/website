@@ -1,5 +1,6 @@
 +++
 title = "Bob Glaze"
+roles = [ "Nominations Committee" ]
 
 [[resources]]
     name = "headshot"

@@ -1,5 +1,6 @@
 +++
 title = "Tracy Allgood"
+roles = [ "Development Committee" ]
 
 [[ resources ]]
     name = "headshot"

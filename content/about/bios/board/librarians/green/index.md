@@ -1,5 +1,6 @@
 +++
 title = "Krista Green"
+board_title = "Librarian"
 
 [[ resources ]]
     name = "headshot"

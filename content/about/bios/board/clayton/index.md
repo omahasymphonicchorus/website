@@ -1,5 +1,6 @@
 +++
 title = "Louise Clayton"
+roles = [ "Editor", "Newsletter" ]
 
 [[ resources ]]
     name = "headshot"
