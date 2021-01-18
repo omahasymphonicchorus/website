@@ -9,11 +9,11 @@
     {{ end }}
     <div class="team">
       <div class="row justify-content-center">
-        {{ $bios := .Pages }}
-        {{ range .Pages }}
+        {{ $bios := where .Pages "Title" "ne" "Board of Directors" }}
+        {{ range $bios }}
           <div class="{{ if eq (len $bios) 1 }}col-md-12{{ else if eq (mod (len $bios) 3) 1 }}col-md-6{{ else }}col-md-4{{ end }}">
             <div class="team-player">
-              <img src="{{ $headshot := .Resources.GetMatch "headshot" }}{{ with $headshot }}{{ .RelPermalink }}{{ end }}" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+              <img src="{{ $headshot := .Resources.GetMatch "headshot" }}{{ with $headshot }}{{ .RelPermalink }}{{ end }}" alt="{{ .Title }}" class="rounded-circle img-fluid img-raised">
               <h4 class="title">{{ .Title }}</h4>
               <p class="category text-primary">{{ .Params.position }}</p>
               <p class="description">{{ .Description }}...</p>
@@ -22,10 +22,70 @@
           </div>
         {{ end }}
       </div>
+      {{ with .GetPage "board" }}
+      <h3 class="title">{{ .Title }}</h3>
+      {{ with .GetPage "officers" }}
+      <div class="team">
+        <div class="row justify-content-center">
+          {{ range where .Pages "Title" "ne" "Officers"}}
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="team-player sm">
+              <img src="{{ $headshot := .Resources.GetMatch "headshot" }}{{ with $headshot }}{{ .RelPermalink }}{{ end }}" class="rounded-circle img-fluid img-raised sm">
+              <h5 class="title">{{ .Title }}</h5>
+              <h6 class="title">{{ .Params.board_title}}</h6>
+              {{ if .Params.roles }}
+              <p class="small">
+                {{ range $i, $role := .Params.roles }}
+                {{ if (gt $i 0) }}<br>{{ end }}{{ $role }}
+                {{ end }}
+              </p>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+      <div class="team">
+        <div class="row justify-content-center">
+          {{ range where (where ( sort .Pages ".File.ContentBaseName")  "Title" "ne" "Officers") "Title" "ne" "Chorus Librarians" }}
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="team-player sm">
+              <img src="{{ $headshot := .Resources.GetMatch "headshot" }}{{ with $headshot }}{{ .RelPermalink }}{{ end }}" class="rounded-circle img-fluid img-raised sm">
+              <h5 class="title">{{ .Title }}</h5>
+              {{ if .Params.roles }}
+              <p class="small">
+                {{ range $i, $role := .Params.roles }}
+                {{ if (gt $i 0) }}<br>{{ end }}{{ $role }}
+                {{ end }}
+              </p>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ with .GetPage "librarians" }}
+      <h4 class="title">Chorus Librarians</h4>
+      <div class="team">
+        <div class="row justify-content-center">
+          {{ range where (where ( sort .Pages ".File.ContentBaseName")  "Title" "ne" "Officers") "Title" "ne" "Chorus Librarians" }}
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="team-player sm">
+              <img src="{{ $headshot := .Resources.GetMatch "headshot" }}{{ with $headshot }}{{ .RelPermalink }}{{ end }}" class="rounded-circle img-fluid img-raised sm">
+              <h5 class="title">{{ .Title }}</h5>
+              <h6 class="title">{{ .Params.board_title}}</h6>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
     </div>
   </div>
 </div>
-{{ range .Pages }}
+{{ range where .Pages "Title" "ne" "Board of Directors" }}
   <div class="modal fade" id="{{ .UniqueID }}-bio" tabindex="-1" role="dialog" aria-labelledby="{{ .UniqueID }}-bio" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

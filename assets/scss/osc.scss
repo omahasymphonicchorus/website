@@ -1,4 +1,4 @@
-@import 'now-ui-kit';
+@import "now-ui-kit";
 
 /* 
  * Style sheet overrides and changes for OSC
@@ -14,26 +14,26 @@
 }
 
 .map:not(:empty) {
-    min-height: 256px;
+  min-height: 256px;
 }
 
 .datepicker.datepicker-inline {
-    width: 256px;
-    margin-left: auto;
-    margin-right: auto;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-    visibility: visible;
+  width: 256px;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
 }
 
 .brand .h1-seo {
-    font-size: 2.8em;
-    text-transform: uppercase;
-    font-weight: 300;
+  font-size: 2.8em;
+  text-transform: uppercase;
+  font-weight: 300;
 }
 
 /* Square donation form */
@@ -100,7 +100,8 @@
   background-size: contain;
   border: 0;
   border-radius: 4px;
-  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.30), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
   outline: 0;
   cursor: pointer;
   display: none;
@@ -118,9 +119,9 @@
 }
 
 #sq-walletbox {
-  float:left;
-  margin:5px;
-  padding:10px;
+  float: left;
+  margin: 5px;
+  padding: 10px;
   text-align: center;
   vertical-align: top;
   font-weight: bold;
@@ -137,17 +138,16 @@
   }
 }
 
-
 .form-group.donation-amount-form-group {
   margin-top: -3em;
 
-  &>.input-group .form-control {
+  & > .input-group .form-control {
     padding-top: 2.5em;
     padding-bottom: 1em;
   }
 
-  &>.input-group .input-group-prepend>span,
-  &>.input-group .input-group-append>span {
+  & > .input-group .input-group-prepend > span,
+  & > .input-group .input-group-append > span {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     padding-top: 1.5em;
@@ -157,6 +157,14 @@
 
 .team-player .title {
   padding-top: 0;
+}
+
+.landing-page {
+  .section-team {
+    .team .team-player.sm img {
+      max-width: 6pc;
+    }
+  }
 }
 
 .donation-processing {
@@ -170,7 +178,9 @@
   background-color: rgba(white, 0.9);
   z-index: 1000;
 
-  .processing, .success, .failure {
+  .processing,
+  .success,
+  .failure {
     i {
       font-size: 10em;
     }
@@ -225,7 +235,7 @@
     position: fixed;
     top: 1em;
     right: 1em;
-    background-color: rgba(black, .8);
+    background-color: rgba(black, 0.8);
     padding: 1em;
     a {
       color: white;
